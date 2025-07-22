@@ -26,32 +26,111 @@
         }
     </script>
     <style>
-        body { font-family: 'Open Sans', sans-serif; scroll-behavior: smooth; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
-        .sticky-nav { position: sticky; top: 0; z-index: 50; }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
-        .step-form { display: none; }
-        .step-form.active { display: block; }
-        .dropdown-menu { transition: opacity 0.2s ease-out, transform 0.2s ease-out; opacity: 0; transform: translateY(-10px); pointer-events: none; }
-        .dropdown-menu.active { opacity: 1; display: block !important; transform: translateY(0); pointer-events: auto; }
-        .dropdown-trigger.open .dropdown-icon { transform: rotate(180deg); }
-        .dropdown-icon { transition: transform 0.2s ease-out; display: inline-block; margin-left: 4px; }
-        /* Carousel */
-        .testimonial-container { position: relative; overflow: hidden; min-height: 300px; }
-        .testimonial-slides { position: relative; width: 100%; height: 100%; }
-        .testimonial-slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; transform: translateX(100%); }
-        .testimonial-slide.active { opacity: 1; transform: translateX(0); z-index: 2; }
-        .testimonial-slide.prev { transform: translateX(-100%); }
-        /* Accordion */
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .faq-item.active .accordion-content { max-height: 500px; }
-        .faq-item.active .accordion-icon { transform: rotate(180deg); }
-        .accordion-icon { transition: transform 0.3s ease-out; }
-        /* Ticker */
-        .news-ticker { overflow: hidden; white-space: nowrap; position: relative; }
-        .news-ticker-content { display: inline-block; animation: ticker 40s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        .news-ticker:hover .news-ticker-content { animation-play-state: paused; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            scroll-behavior: smooth; 
+        }
+        h1, h2, h3, h4, h5, h6 { 
+            font-family: 'Montserrat', sans-serif; 
+        }
+        .sticky-nav { 
+            position: sticky; 
+            top: 0; 
+            z-index: 50; 
+        }
+        .whatsapp-float { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            z-index: 100; 
+        }
+        .step-form { 
+            display: none; 
+        }
+        .step-form.active { 
+            display: block; 
+        }
+        
+        /* Carrousel de témoignages - CORRIGÉ */
+        .testimonial-container { 
+            position: relative; 
+            overflow: hidden; 
+            min-height: 300px; 
+        }
+        .testimonial-slides { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+        }
+        .testimonial-slide { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            opacity: 0; 
+            transition: opacity 0.6s ease-in-out; 
+            transform: translateX(100%);
+        }
+        .testimonial-slide.active { 
+            opacity: 1; 
+            transform: translateX(0);
+            z-index: 2;
+        }
+        .testimonial-slide.prev { 
+            transform: translateX(-100%);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .faq-item.active .accordion-content {
+            max-height: 500px;
+        }
+        .faq-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease-out;
+        }
+
+        .news-ticker { 
+            overflow: hidden; 
+            white-space: nowrap; 
+            position: relative; 
+        }
+        .news-ticker-content { 
+            display: inline-block; 
+            animation: ticker 40s linear infinite; 
+        }
+        @keyframes ticker { 
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(-100%); } 
+        }
+        .news-ticker:hover .news-ticker-content { 
+            animation-play-state: paused; 
+        }
+
+        .dropdown-menu { 
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out; 
+            opacity: 0; 
+            transform: translateY(-10px); 
+            pointer-events: none; 
+        }
+        .dropdown-menu.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+            pointer-events: auto; 
+        }
+        .dropdown-trigger.open .dropdown-icon { 
+            transform: rotate(180deg); 
+        }
+        .dropdown-icon { 
+            transition: transform 0.2s ease-out; 
+            display: inline-block; 
+            margin-left: 4px; 
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-secondary">
@@ -83,7 +162,7 @@
                             <span>L'INAP</span>
                             <svg class="dropdown-icon h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </button>
-                        <div id="linap-menu" class="dropdown-menu absolute bg-white shadow-lg rounded-md mt-2 py-1 w-48 z-30 right-0 md:left-0">
+                        <div id="linap-menu" class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-1 w-48 z-30 right-0 md:left-0">
                              <a href="#about" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">À propos de nous</a>
                              <a href="#domains" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">Domaines d'intervention</a>
                              <a href="#news" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">Actualités</a>
@@ -100,133 +179,518 @@
     </header>
 
     <!-- Hero Banner -->
-    <!-- ... contenu inchangé ... -->
+     <section class="bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-5 leading-tight">Le gouvernement est à vos côtés pour construire un avenir meilleur.</h2>
+                    <p class="text-lg md:text-xl mb-8 opacity-90">L'Initiative Nationale d'Aide à la Population vous accompagne dans vos projets et besoins essentiels.</p>
+                    <a href="#apply" class="bg-white text-primary px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300 inline-block shadow-md text-lg transform hover:scale-105">Soumettre une demande d'aide</a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mains unies en signe de solidarité" class="rounded-lg shadow-xl max-w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Formulaire, FAQ, News, etc. inchangés excepté l'ID du radio -->
-    <!-- Dans la section Soumission, remplacer : -->
-    <!-- <input id="contact-email" name="contact-method" type="radio" value="Email" ...> -->
-    <!-- par -->
-    <!-- <input id="contact-method-email" name="contact-method" type="radio" value="Email" ...> -->
-
-    <!-- Chatbot Trigger -->
-    <!-- ... inchangé ... -->
-
-    <!-- Footer -->
-    <!-- ... inchangé ... -->
-
-    <!-- Cookie Banner -->
-    <!-- ... inchangé ... -->
-
-    <!-- SCRIPT D'INTERACTIONS -->
+    <!-- JavaScript COMPLET ET FONCTIONNEL -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // DROPDOWN
-      const trigger = document.getElementById('linap-menu-trigger');
-      const menu    = document.getElementById('linap-menu');
-      trigger.addEventListener('click', () => {
-        menu.classList.toggle('active');
-        menu.classList.toggle('hidden');
-        trigger.setAttribute('aria-expanded', menu.classList.contains('active'));
-      });
-      document.addEventListener('click', e => {
-        if (!trigger.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.remove('active');
-          menu.classList.add('hidden');
-          trigger.setAttribute('aria-expanded', 'false');
+    (function() {
+        'use strict';
+
+        // Variables globales du carrousel
+        let currentTestimonialIndex = 0;
+        let testimonialSlides = [];
+        let testimonialInterval;
+        const totalTestimonials = 1600;
+
+        // Base de données complète des témoignages
+        const testimonialDatabase = {
+            firstNames: [
+                "Marie", "Pierre", "Sophie", "Julien", "Amina", "David", "Fatima", "Kevin", "Chloé", "Mohamed",
+                "Isabelle", "Nicolas", "Sandrine", "Thomas", "Latifa", "Paul", "Céline", "Youssef", "Valérie", "Ahmed",
+                "Nathalie", "François", "Samira", "Anthony", "Émilie", "Hassan", "Catherine", "Karim", "Christelle", "Rachid",
+                "Aurélie", "Samir", "Patricia", "Omar", "Stéphanie", "Mehdi", "Virginie", "Tarek", "Caroline", "Farid"
+            ],
+            lastNames: [
+                "Martin", "Bernard", "Thomas", "Petit", "Robert", "Richard", "Durand", "Dubois", "Moreau", "Laurent",
+                "Simon", "Michel", "Lefebvre", "Leroy", "Roux", "Bertrand", "Morel", "Fournier", "Girard", "Bonnet",
+                "Dupont", "Lambert", "Fontaine", "Rousseau", "Vincent", "Muller", "Lefevre", "Faure", "Andre", "Mercier"
+            ],
+            testimonials: [
+                "Grâce à l'INAP, j'ai pu financer ma formation en développement web. Aujourd'hui, j'ai trouvé un emploi stable et je peux subvenir aux besoins de ma famille. Merci infiniment !",
+                "L'aide au logement m'a permis d'éviter l'expulsion. L'équipe a été très réactive et m'a accompagné dans toutes les démarches. C'est un vrai soulagement.",
+                "En tant qu'agriculteur, les subventions pour moderniser mon exploitation ont été essentielles. Ma productivité a augmenté de 30% en six mois !",
+                "L'INAP m'a aidé à lancer mon entreprise de services à la personne. Aujourd'hui, j'emploie 5 personnes et mon chiffre d'affaires ne cesse de croître.",
+                "Après un accident, les aides pour l'adaptation de mon logement ont changé ma vie. Je retrouve enfin mon autonomie au quotidien."
+            ],
+            cities: [
+                "Paris", "Lyon", "Marseille", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille",
+                "Rennes", "Reims", "Le Havre", "Saint-Étienne", "Toulon", "Grenoble", "Dijon", "Angers", "Nîmes", "Villeurbanne"
+            ]
+        };
+
+        // Génération des témoignages
+        function generateTestimonials() {
+            const slidesContainer = document.getElementById('testimonialSlides');
+            if (!slidesContainer) return;
+
+            // Générer 10 témoignages visibles
+            for (let i = 0; i < 10; i++) {
+                const firstName = testimonialDatabase.firstNames[Math.floor(Math.random() * testimonialDatabase.firstNames.length)];
+                const lastName = testimonialDatabase.lastNames[Math.floor(Math.random() * testimonialDatabase.lastNames.length)];
+                const city = testimonialDatabase.cities[Math.floor(Math.random() * testimonialDatabase.cities.length)];
+                const testimonial = testimonialDatabase.testimonials[Math.floor(Math.random() * testimonialDatabase.testimonials.length)];
+                
+                const slideHTML = `
+                    <div class="testimonial-slide ${i === 0 ? 'active' : ''}" data-index="${i}">
+                        <div class="bg-white p-8 rounded-lg shadow-md mx-4">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <span class="font-bold">${firstName.charAt(0)}</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">${firstName} ${lastName.charAt(0)}.</h4>
+                                    <p class="text-sm text-gray-600">${city}</p>
+                                </div>
+                            </div>
+                            <p class="text-secondary italic mb-4">"${testimonial}"</p>
+                            <div class="flex text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                slidesContainer.insertAdjacentHTML('beforeend', slideHTML);
+            }
+
+            testimonialSlides = document.querySelectorAll('.testimonial-slide');
         }
-      });
 
-      // WIZARD
-      const steps = Array.from(document.querySelectorAll('.step-form'));
-      const progress = document.getElementById('form-progress');
-      let current = 0;
-      function showStep(i) {
-        steps.forEach((s, idx) => s.classList.toggle('active', idx === i));
-        progress.style.width = `${25 * (i + 1)}%`;
-      }
-      document.querySelectorAll('.next-step').forEach(btn => btn.addEventListener('click', () => { if (current < steps.length - 1) showStep(++current); }));
-      document.querySelectorAll('.prev-step').forEach(btn => btn.addEventListener('click', () => { if (current > 0) showStep(--current); }));
-
-      // COMPTEUR
-      const txt = document.getElementById('project-description');
-      const cnt = document.getElementById('char-count');
-      txt.addEventListener('input', () => cnt.textContent = txt.value.length);
-
-      // FICHIERS
-      const fi = document.getElementById('file-upload');
-      const fn = document.getElementById('file-name');
-      fi.addEventListener('change', () => fn.textContent = Array.from(fi.files).map(f => f.name).join(', ') || 'Aucun fichier sélectionné');
-
-      // FAQ
-      document.querySelectorAll('.accordion-toggle').forEach(btn => btn.addEventListener('click', () => btn.closest('.faq-item').classList.toggle('active')));
-      document.getElementById('faq-search').addEventListener('input', function() {
-        const q = this.value.toLowerCase(); let any=false;
-        document.querySelectorAll('#faq-list .faq-item').forEach(item => {
-          const show = item.querySelector('.faq-question').textContent.toLowerCase().includes(q);
-          item.style.display = show ? '' : 'none'; if (show) any = true;
-        });
-        document.getElementById('faq-no-results').style.display = any ? 'none' : '';
-      });
-
-      // CAROUSEL
-      (function(){
-        let idx = 0;
-        const slidesCont = document.getElementById('testimonialSlides');
-        const ex = [
-          "Merci INAP, j'ai pu payer mon loyer ce mois-ci !",
-          "Un soutien précieux pour mes études."
-        ];
-        ex.forEach((t,i) => {
-          const d = document.createElement('div'); d.className = 'testimonial-slide'+(i===0?' active':'');
-          d.innerHTML = `<p class=\"text-lg italic mb-4\">“${t}”</p><p class=\"font-semibold\">– Bénéficiaire</p>`;
-          slidesCont.appendChild(d);
-        });
-        const slides = slidesCont.querySelectorAll('.testimonial-slide');
-        function show(i){
-          slides.forEach((s,j)=>{ s.classList.toggle('active', j===i); s.classList.toggle('prev', j===((i-1+slides.length)%slides.length)); });
-          document.getElementById('currentTestimonialIndex').textContent = i+1;
-          document.getElementById('testimonialProgressBar').style.width = `${100*(i)/(slides.length-1)}%`;
+        // Navigation du carrousel
+        function showTestimonial(index) {
+            if (!testimonialSlides.length) return;
+            
+            testimonialSlides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            if (testimonialSlides[index]) {
+                testimonialSlides[index].classList.add('active');
+            }
+            
+            // Mise à jour de l'indicateur de progression
+            const progressBar = document.getElementById('testimonialProgressBar');
+            const currentIndex = document.getElementById('currentTestimonialIndex');
+            
+            if (progressBar && currentIndex) {
+                progressBar.style.width = `${((index + 1) / testimonialSlides.length) * 100}%`;
+                currentIndex.textContent = index + 1;
+            }
         }
-        document.getElementById('nextTestimonial').addEventListener('click', ()=>{ idx=(idx+1)%slides.length; show(idx); });
-        document.getElementById('prevTestimonial').addEventListener('click', ()=>{ idx=(idx-1+slides.length)%slides.length; show(idx); });
-        setInterval(()=>{ idx=(idx+1)%slides.length; show(idx); }, 8000);
-      })();
 
-      // FILTRE DOMAINES
-      document.querySelectorAll('#domains button').forEach(btn => btn.addEventListener('click', () => {
-        const cat = btn.textContent.trim().toLowerCase();
-        document.querySelectorAll('#domains .grid > div').forEach(card => card.style.display = (cat==='tous'||card.textContent.toLowerCase().includes(cat)) ? '' : 'none');
-        document.querySelectorAll('#domains button').forEach(b => b.classList.remove('bg-primary','text-white'));
-        btn.classList.add('bg-primary','text-white');
-      }));
+        function nextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
+            showTestimonial(currentTestimonialIndex);
+        }
 
-      // CHATBOT
-      const cbt = document.getElementById('chatbot-trigger');
-      const cbw = document.getElementById('chatbot-widget');
-      const cbc = document.getElementById('chatbot-close');
-      cbt.addEventListener('click', ()=>cbw.classList.toggle('hidden'));
-      cbc.addEventListener('click', ()=>cbw.classList.add('hidden'));
+        function prevTestimonial() {
+            currentTestimonialIndex = currentTestimonialIndex === 0 ? testimonialSlides.length - 1 : currentTestimonialIndex - 1;
+            showTestimonial(currentTestimonialIndex);
+        }
 
-      // COOKIES
-      const ban = document.getElementById('cookie-banner');
-      const acc = document.getElementById('cookie-accept');
-      const rej = document.getElementById('cookie-reject');
-      if (!localStorage.getItem('inapCookies')) ban.style.display = '';
-      acc.addEventListener('click', ()=>{ localStorage.setItem('inapCookies','accepted'); ban.style.display='none'; });
-      rej.addEventListener('click', ()=>{ localStorage.setItem('inapCookies','rejected'); ban.style.display='none'; });
+        // Initialisation du carrousel
+        function initTestimonialCarousel() {
+            generateTestimonials();
+            
+            const nextBtn = document.getElementById('nextTestimonial');
+            const prevBtn = document.getElementById('prevTestimonial');
+            
+            if (nextBtn) nextBtn.addEventListener('click', nextTestimonial);
+            if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
+            
+            // Auto-défilement
+            testimonialInterval = setInterval(nextTestimonial, 5000);
+            
+            // Pause au survol
+            const container = document.querySelector('.testimonial-container');
+            if (container) {
+                container.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
+                container.addEventListener('mouseleave', () => {
+                    testimonialInterval = setInterval(nextTestimonial, 5000);
+                });
+            }
+        }
 
-      // CONTACT FORM
-      const cf = document.getElementById('contact-form');
-      const se = document.getElementById('contact-form-status');
-      cf.addEventListener('submit', e => {
-        e.preventDefault();
-        const data = new FormData(cf);
-        fetch(cf.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-          .then(resp => resp.ok ? resp.json() : Promise.reject(resp))
-          .then(()=>{ se.textContent = "Message envoyé !"; cf.reset(); })
-          .catch(()=>{ se.textContent = "Une erreur est survenue."; });
-      });
-    });
+        // Gestion des formulaires multi-étapes
+        let currentStep = 1;
+        const maxSteps = 4;
+
+        function updateFormProgress() {
+            const progressBar = document.getElementById('form-progress');
+            if (progressBar) {
+                const progressPercent = (currentStep / maxSteps) * 100;
+                progressBar.style.width = progressPercent + '%';
+            }
+        }
+
+        function showStep(stepNumber) {
+            // Masquer toutes les étapes
+            document.querySelectorAll('.step-form').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Afficher l'étape courante
+            const targetStep = document.getElementById(`step-${stepNumber}`);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
+            
+            updateFormProgress();
+        }
+
+        function validateStep(stepNumber) {
+            const currentStepElement = document.getElementById(`step-${stepNumber}`);
+            if (!currentStepElement) return false;
+            
+            const requiredFields = currentStepElement.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            return isValid;
+        }
+
+        function updateSummary() {
+            // Récupérer les données du formulaire
+            const domain = document.querySelector('input[name="domain"]:checked')?.value || '-';
+            const firstName = document.getElementById('first-name')?.value || '';
+            const lastName = document.getElementById('last-name')?.value || '';
+            const email = document.getElementById('email')?.value || '-';
+            const phone = document.getElementById('phone')?.value || '-';
+            const description = document.getElementById('project-description')?.value || '-';
+            const amount = document.getElementById('amount')?.value || '-';
+            
+            // Mettre à jour le résumé
+            document.getElementById('summary-domain').textContent = domain;
+            document.getElementById('summary-name').textContent = `${firstName} ${lastName}`.trim();
+            document.getElementById('summary-email').textContent = email;
+            document.getElementById('summary-phone').textContent = phone;
+            document.getElementById('summary-description').textContent = description.substring(0, 100) + (description.length > 100 ? '...' : '');
+            document.getElementById('summary-amount').textContent = amount;
+        }
+
+        // Gestion des étapes du formulaire
+        function initFormSteps() {
+            // Boutons Suivant
+            document.querySelectorAll('.next-step').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (validateStep(currentStep)) {
+                        if (currentStep < maxSteps) {
+                            currentStep++;
+                            showStep(currentStep);
+                            if (currentStep === 4) {
+                                updateSummary();
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Boutons Précédent
+            document.querySelectorAll('.prev-step').forEach(button => {
+                button.addEventListener('click', () => {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                });
+            });
+        }
+
+        // Compteur de caractères
+        function initCharacterCounter() {
+            const textarea = document.getElementById('project-description');
+            const counter = document.getElementById('char-count');
+            
+            if (textarea && counter) {
+                textarea.addEventListener('input', () => {
+                    const count = textarea.value.length;
+                    counter.textContent = count;
+                    
+                    if (count >= 300) {
+                        counter.classList.add('text-green-600');
+                        counter.classList.remove('text-red-500');
+                    } else {
+                        counter.classList.add('text-red-500');
+                        counter.classList.remove('text-green-600');
+                    }
+                });
+            }
+        }
+
+        // Gestion des accordéons FAQ
+        function initFAQ() {
+            document.querySelectorAll('.accordion-toggle').forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const faqItem = toggle.closest('.faq-item');
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Fermer tous les autres accordéons
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Ouvrir/fermer l'accordéon cliqué
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Recherche FAQ
+        function initFAQSearch() {
+            const searchInput = document.getElementById('faq-search');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('faq-no-results');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    let hasResults = false;
+                    
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                        if (question.includes(searchTerm) || searchTerm === '') {
+                            item.style.display = 'block';
+                            hasResults = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    if (noResults) {
+                        noResults.style.display = hasResults ? 'none' : 'block';
+                    }
+                });
+            }
+        }
+
+        // Gestion des dropdowns
+        function initDropdowns() {
+            const dropdownTrigger = document.getElementById('linap-menu-trigger');
+            const dropdownMenu = document.getElementById('linap-menu');
+            
+            if (dropdownTrigger && dropdownMenu) {
+                dropdownTrigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpen = dropdownMenu.classList.contains('active');
+                    
+                    if (isOpen) {
+                        dropdownMenu.classList.remove('active');
+                        dropdownMenu.classList.add('hidden');
+                        dropdownTrigger.classList.remove('open');
+                        dropdownTrigger.setAttribute('aria-expanded', 'false');
+                    } else {
+                        dropdownMenu.classList.add('active');
+                        dropdownMenu.classList.remove('hidden');
+                        dropdownTrigger.classList.add('open');
+                        dropdownTrigger.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                
+                // Fermer le dropdown en cliquant ailleurs
+                document.addEventListener('click', (e) => {
+                    if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                        dropdownMenu.classList.add('hidden');
+                        dropdownTrigger.classList.remove('open');
+                        dropdownTrigger.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        }
+
+        // Soumission du formulaire principal
+        function initFormSubmission() {
+            const form = document.getElementById('grant-application');
+            const successMessage = document.getElementById('success-message');
+            const formContainer = document.getElementById('form-steps-container');
+            const referenceNumber = document.getElementById('reference-number');
+            
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    if (!validateStep(4)) {
+                        alert('Veuillez remplir tous les champs obligatoires et cocher la case de consentement.');
+                        return;
+                    }
+                    
+                    // Simulation d'envoi
+                    setTimeout(() => {
+                        if (formContainer) formContainer.style.display = 'none';
+                        if (successMessage) successMessage.classList.remove('hidden');
+                        
+                        // Générer un numéro de référence
+                        if (referenceNumber) {
+                            const refNum = Math.floor(Math.random() * 99999).toString().padStart(5, '0');
+                            referenceNumber.textContent = refNum;
+                        }
+                        
+                        // Scroll vers le message de succès
+                        successMessage?.scrollIntoView({ behavior: 'smooth' });
+                    }, 1500);
+                });
+            }
+        }
+
+        // Gestion du formulaire de contact
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const statusElement = document.getElementById('contact-form-status');
+            const submitButton = document.getElementById('contact-submit-button');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    if (submitButton) submitButton.disabled = true;
+                    if (statusElement) {
+                        statusElement.textContent = 'Envoi en cours...';
+                        statusElement.className = 'text-sm text-center mt-4 h-4 text-blue-600';
+                    }
+                    
+                    // Utiliser Formspree pour l'envoi
+                    const formData = new FormData(contactForm);
+                    
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            if (statusElement) {
+                                statusElement.textContent = 'Message envoyé avec succès !';
+                                statusElement.className = 'text-sm text-center mt-4 h-4 text-green-600';
+                            }
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Erreur d\'envoi');
+                        }
+                    })
+                    .catch(error => {
+                        if (statusElement) {
+                            statusElement.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
+                            statusElement.className = 'text-sm text-center mt-4 h-4 text-red-600';
+                        }
+                    })
+                    .finally(() => {
+                        if (submitButton) submitButton.disabled = false;
+                    });
+                });
+            }
+        }
+
+        // Gestion des cookies
+        function initCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const rejectBtn = document.getElementById('cookie-reject');
+            
+            // Vérifier si l'utilisateur a déjà fait un choix
+            if (!localStorage.getItem('cookiesAccepted') && banner) {
+                banner.style.display = 'block';
+            }
+            
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookiesAccepted', 'true');
+                    if (banner) banner.style.display = 'none';
+                });
+            }
+            
+            if (rejectBtn) {
+                rejectBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookiesAccepted', 'false');
+                    if (banner) banner.style.display = 'none';
+                });
+            }
+        }
+
+        // Chatbot simple
+        function initChatbot() {
+            const trigger = document.getElementById('chatbot-trigger');
+            const widget = document.getElementById('chatbot-widget');
+            const closeBtn = document.getElementById('chatbot-close');
+            
+            if (trigger && widget) {
+                trigger.addEventListener('click', () => {
+                    widget.classList.toggle('hidden');
+                });
+            }
+            
+            if (closeBtn && widget) {
+                closeBtn.addEventListener('click', () => {
+                    widget.classList.add('hidden');
+                });
+            }
+        }
+
+        // Navigation fluide
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            initTestimonialCarousel();
+            initFormSteps();
+            initCharacterCounter();
+            initFAQ();
+            initFAQSearch();
+            initDropdowns();
+            initFormSubmission();
+            initContactForm();
+            initCookieBanner();
+            initChatbot();
+            initSmoothScroll();
+            
+            console.log('INAP - Site web initialisé avec succès');
+        });
+
+    })();
     </script>
+
 </body>
 </html>
