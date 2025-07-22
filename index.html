@@ -26,42 +26,16 @@
         }
     </script>
     <style>
-        body { 
-            font-family: 'Open Sans', sans-serif; 
-            scroll-behavior: smooth; 
-        }
-        h1, h2, h3, h4, h5, h6 { 
-            font-family: 'Montserrat', sans-serif; 
-        }
-        .sticky-nav { 
-            position: sticky; 
-            top: 0; 
-            z-index: 50; 
-        }
-        .whatsapp-float { 
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            z-index: 100; 
-        }
-        .step-form { 
-            display: none; 
-        }
-        .step-form.active { 
-            display: block; 
-        }
+        body { font-family: 'Open Sans', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        .sticky-nav { position: sticky; top: 0; z-index: 50; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
+        .step-form { display: none; }
+        .step-form.active { display: block; }
         
-        /* Carrousel de témoignages - CORRIGÉ */
-        .testimonial-container { 
-            position: relative; 
-            overflow: hidden; 
-            min-height: 300px; 
-        }
-        .testimonial-slides { 
-            position: relative; 
-            width: 100%; 
-            height: 100%; 
-        }
+        /* Testimonial Carousel */
+        .testimonial-container { position: relative; overflow: hidden; min-height: 300px; }
+        .testimonial-slides { position: relative; width: 100%; height: 100%; }
         .testimonial-slide { 
             position: absolute; 
             top: 0; 
@@ -95,41 +69,29 @@
             transition: transform 0.3s ease-out;
         }
 
-        .news-ticker { 
-            overflow: hidden; 
-            white-space: nowrap; 
-            position: relative; 
-        }
-        .news-ticker-content { 
-            display: inline-block; 
-            animation: ticker 40s linear infinite; 
-        }
-        @keyframes ticker { 
-            0% { transform: translateX(100%); } 
-            100% { transform: translateX(-100%); } 
-        }
-        .news-ticker:hover .news-ticker-content { 
-            animation-play-state: paused; 
-        }
+        .news-ticker { overflow: hidden; white-space: nowrap; position: relative; }
+        .news-ticker-content { display: inline-block; animation: ticker 40s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .news-ticker:hover .news-ticker-content { animation-play-state: paused; }
 
-        .dropdown-menu { 
-            transition: opacity 0.2s ease-out, transform 0.2s ease-out; 
-            opacity: 0; 
-            transform: translateY(-10px); 
-            pointer-events: none; 
+        .dropdown-menu { transition: opacity 0.2s ease-out, transform 0.2s ease-out; opacity: 0; transform: translateY(-10px); pointer-events: none; }
+        .dropdown-menu.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .dropdown-trigger.open .dropdown-icon { transform: rotate(180deg); }
+        .dropdown-icon { transition: transform 0.2s ease-out; display: inline-block; margin-left: 4px; }
+
+        /* Loading animation */
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #224488;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
         }
-        .dropdown-menu.active { 
-            opacity: 1; 
-            transform: translateY(0); 
-            pointer-events: auto; 
-        }
-        .dropdown-trigger.open .dropdown-icon { 
-            transform: rotate(180deg); 
-        }
-        .dropdown-icon { 
-            transition: transform 0.2s ease-out; 
-            display: inline-block; 
-            margin-left: 4px; 
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -156,22 +118,22 @@
                     </div>
                 </div>
                 <nav class="flex items-center space-x-2 md:space-x-1 flex-wrap justify-center">
-                    <a href="#" class="px-3 py-2 text-primary hover:text-accent font-medium">Accueil</a>
+                    <a href="#" class="px-3 py-2 text-primary hover:text-accent font-medium transition duration-300">Accueil</a>
                     <div class="relative dropdown-container">
-                        <button id="linap-menu-trigger" class="dropdown-trigger px-3 py-2 text-primary hover:text-accent font-medium flex items-center" aria-haspopup="true" aria-expanded="false">
+                        <button id="linap-menu-trigger" class="dropdown-trigger px-3 py-2 text-primary hover:text-accent font-medium flex items-center transition duration-300" aria-haspopup="true" aria-expanded="false">
                             <span>L'INAP</span>
                             <svg class="dropdown-icon h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </button>
                         <div id="linap-menu" class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-1 w-48 z-30 right-0 md:left-0">
-                             <a href="#about" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">À propos de nous</a>
-                             <a href="#domains" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">Domaines d'intervention</a>
-                             <a href="#news" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">Actualités</a>
-                             <a href="#testimonials" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white">Témoignages</a>
+                             <a href="#about" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white transition duration-300">À propos de nous</a>
+                             <a href="#domains" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white transition duration-300">Domaines d'intervention</a>
+                             <a href="#news" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white transition duration-300">Actualités</a>
+                             <a href="#testimonials" class="block px-4 py-2 text-sm text-secondary hover:bg-primary hover:text-white transition duration-300">Témoignages</a>
                         </div>
                     </div>
-                    <a href="#apply" class="px-3 py-2 text-primary hover:text-accent font-medium">Demander une aide</a>
-                    <a href="#faq" class="px-3 py-2 text-primary hover:text-accent font-medium">FAQ</a>
-                    <a href="#contact" class="px-3 py-2 text-primary hover:text-accent font-medium">Contact</a>
+                    <a href="#apply" class="px-3 py-2 text-primary hover:text-accent font-medium transition duration-300">Demander une aide</a>
+                    <a href="#faq" class="px-3 py-2 text-primary hover:text-accent font-medium transition duration-300">FAQ</a>
+                    <a href="#contact" class="px-3 py-2 text-primary hover:text-accent font-medium transition duration-300">Contact</a>
                     <a href="#apply" class="ml-2 md:ml-4 mt-2 md:mt-0 px-5 py-2 bg-primary text-white rounded-md hover:bg-accent transition duration-300 shadow hover:shadow-md text-sm font-semibold">Soumettre</a>
                 </nav>
             </div>
@@ -179,22 +141,720 @@
     </header>
 
     <!-- Hero Banner -->
-     <section class="bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24">
+    <section class="bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 <div class="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-5 leading-tight">Le gouvernement est à vos côtés pour construire un avenir meilleur.</h2>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-5 leading-tight">Le gouvernement est à vos côtés pour construire un avenir meilleur.</h1>
                     <p class="text-lg md:text-xl mb-8 opacity-90">L'Initiative Nationale d'Aide à la Population vous accompagne dans vos projets et besoins essentiels.</p>
                     <a href="#apply" class="bg-white text-primary px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300 inline-block shadow-md text-lg transform hover:scale-105">Soumettre une demande d'aide</a>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mains unies en signe de solidarité" class="rounded-lg shadow-xl max-w-full h-auto">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mains unies en signe de solidarité représentant l'aide mutuelle et l'entraide" class="rounded-lg shadow-xl max-w-full h-auto">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- JavaScript COMPLET ET FONCTIONNEL -->
+    <!-- Stats Counter -->
+    <section class="bg-secondary text-white py-10">
+        <div class="container mx-auto px-4">
+             <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">97 200+</div>
+                    <p class="text-light opacity-80 text-sm uppercase tracking-wider">Demandes reçues</p>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">96 800+</div>
+                    <p class="text-light opacity-80 text-sm uppercase tracking-wider">Bénéficiaires aidés</p>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">8.2+ M€</div>
+                    <p class="text-light opacity-80 text-sm uppercase tracking-wider">Distribués</p>
+                </div>
+            </div>
+             <div class="mt-8 bg-primary bg-opacity-20 rounded-lg overflow-hidden">
+                <div class="news-ticker py-3">
+                    <div class="news-ticker-content flex items-center text-sm md:text-base">
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-bullhorn mr-2 text-yellow-300"></i>Nouveau : Plus de 1600 témoignages positifs reçus ce mois-ci !</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-star mr-2 text-yellow-300"></i>97% de satisfaction sur nos services d'accompagnement</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-calendar-alt mr-2 text-yellow-300"></i>Plateforme INAP 2.0 avec suivi en temps réel disponible maintenant</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-book-open mr-2 text-yellow-300"></i>25 millions d'euros débloqués pour la transition énergétique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4"> 
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">À propos de l'INAP</h2> 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"> 
+                <div class="bg-light p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300"> 
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"> 
+                        <i class="fas fa-hand-holding-heart text-2xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-3">Solidarité</h3> 
+                    <p class="text-secondary">Nous croyons en une société où chacun peut compter sur le soutien de la communauté nationale.</p> 
+                </div> 
+                <div class="bg-light p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300"> 
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"> 
+                        <i class="fas fa-balance-scale text-2xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-3">Équité</h3> 
+                    <p class="text-secondary">Nos aides sont attribuées selon des critères transparents pour garantir une répartition juste.</p> 
+                </div> 
+                <div class="bg-light p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition duration-300"> 
+                    <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4"> 
+                        <i class="fas fa-eye text-2xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-3">Transparence</h3> 
+                    <p class="text-secondary">Toutes nos décisions et processus sont accessibles pour renforcer la confiance citoyenne.</p> 
+                </div> 
+            </div> 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"> 
+                <div> 
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">Notre mission</h3> 
+                    <p class="text-secondary mb-6 leading-relaxed">L'INAP a été créée pour répondre aux besoins essentiels des populations vulnérables à travers un dispositif d'aide unique et simplifié. Notre objectif est de briser les barrières administratives pour apporter un soutien concret là où il est le plus nécessaire, en favorisant l'autonomie et l'inclusion.</p> 
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">Notre histoire</h3> 
+                    <p class="text-secondary leading-relaxed">Fondée en 2020 en réponse à la crise économique, l'INAP a rapidement évolué pour devenir le principal programme d'aide sociale du gouvernement. Depuis, nous avons accompagné plus de 96 800 bénéficiaires à travers le pays, adaptant constamment nos dispositifs aux réalités du terrain.</p> 
+                </div> 
+                <div class="flex justify-center"> 
+                    <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Personnes souriantes recevant de l'aide et du soutien" class="rounded-lg shadow-xl max-w-full h-auto"> 
+                </div> 
+            </div> 
+        </div>
+    </section>
+
+    <!-- Domains Section -->
+    <section id="domains" class="py-16 bg-light">
+        <div class="container mx-auto px-4"> 
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Domaines d'intervention</h2> 
+            <div class="mb-8 flex justify-center flex-wrap gap-2" id="domain-filters"> 
+                <button type="button" class="domain-filter px-4 py-2 text-sm font-medium rounded-lg bg-primary text-white shadow-sm active" data-filter="all">Tous</button> 
+                <button type="button" class="domain-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-primary hover:bg-gray-100 shadow-sm border border-gray-200" data-filter="family">Familles</button> 
+                <button type="button" class="domain-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-primary hover:bg-gray-100 shadow-sm border border-gray-200" data-filter="youth">Jeunes</button> 
+                <button type="button" class="domain-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-primary hover:bg-gray-100 shadow-sm border border-gray-200" data-filter="senior">Séniors</button> 
+                <button type="button" class="domain-filter px-4 py-2 text-sm font-medium rounded-lg bg-white text-primary hover:bg-gray-100 shadow-sm border border-gray-200" data-filter="rural">Rural</button> 
+            </div> 
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="domains-grid"> 
+                <div class="domain-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-categories="family">
+                    <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-home text-xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-2">Aide au logement</h3> 
+                    <p class="text-secondary mb-4 flex-grow">Soutien aux familles en difficulté pour payer leur loyer ou effectuer des réparations essentielles.</p> 
+                    <a href="#apply" class="text-primary font-medium hover:underline mt-auto self-start transition duration-300">Faire une demande →</a> 
+                </div>
+                <div class="domain-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-categories="youth">
+                    <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-graduation-cap text-xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-2">Formation professionnelle</h3> 
+                    <p class="text-secondary mb-4 flex-grow">Financement de formations qualifiantes pour les demandeurs d'emploi et jeunes diplômés.</p> 
+                    <a href="#apply" class="text-primary font-medium hover:underline mt-auto self-start transition duration-300">Faire une demande →</a> 
+                </div>
+                <div class="domain-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-categories="senior family">
+                    <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-heartbeat text-xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-2">Santé et dépendance</h3> 
+                    <p class="text-secondary mb-4 flex-grow">Prise en charge partielle des frais médicaux et d'aide à domicile pour les personnes vulnérables.</p> 
+                    <a href="#apply" class="text-primary font-medium hover:underline mt-auto self-start transition duration-300">Faire une demande →</a> 
+                </div>
+                <div class="domain-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-categories="rural">
+                    <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-tractor text-xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-2">Soutien agricole</h3> 
+                    <p class="text-secondary mb-4 flex-grow">Subventions pour les petits agriculteurs et modernisation des exploitations familiales.</p> 
+                    <a href="#apply" class="text-primary font-medium hover:underline mt-auto self-start transition duration-300">Faire une demande →</a> 
+                </div>
+                <div class="domain-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-categories="youth">
+                    <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-briefcase text-xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-2">Entrepreneuriat</h3> 
+                    <p class="text-secondary mb-4 flex-grow">Aide au lancement d'activités pour les créateurs d'entreprise issus de quartiers prioritaires.</p> 
+                    <a href="#apply" class="text-primary font-medium hover:underline mt-auto self-start transition duration-300">Faire une demande →</a> 
+                </div>
+                <div class="domain-card bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 flex flex-col" data-categories="family">
+                    <div class="flex-shrink-0 bg-primary bg-opacity-10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4"> 
+                        <i class="fas fa-hand-holding-usd text-xl"></i> 
+                    </div> 
+                    <h3 class="text-xl font-semibold mb-2">Urgence sociale</h3> 
+                    <p class="text-secondary mb-4 flex-grow">Aides ponctuelles pour faire face à des situations critiques (expulsion, coupure d'énergie...).</p> 
+                    <a href="#apply" class="text-primary font-medium hover:underline mt-auto self-start transition duration-300">Faire une demande →</a> 
+                </div> 
+            </div> 
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="apply" class="py-16 bg-white">
+        <div class="container mx-auto px-4"> 
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Soumettre votre demande d'aide</h2> 
+            <div class="max-w-3xl mx-auto bg-light rounded-lg shadow-lg overflow-hidden"> 
+                <div class="bg-gray-200 h-2 relative"> 
+                    <div class="bg-primary h-2 absolute left-0 top-0 transition-all duration-500 ease-out" id="form-progress" style="width: 25%;"></div> 
+                </div> 
+                <div id="form-steps-container" class="p-6 md:p-8"> 
+                    <form id="grant-application"> 
+                        <div class="step-form active" id="step-1"> 
+                            <h3 class="text-xl font-semibold mb-6 text-primary">1. Choisissez le domaine de votre demande</h3> 
+                            <div class="space-y-4"> 
+                                <div class="flex items-center p-3 rounded-md hover:bg-gray-200 transition duration-150"> 
+                                    <input id="housing" name="domain" type="radio" value="Aide au logement" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" checked required> 
+                                    <label for="housing" class="ml-3 block text-secondary cursor-pointer">Aide au logement</label> 
+                                </div> 
+                                <div class="flex items-center p-3 rounded-md hover:bg-gray-200 transition duration-150"> 
+                                    <input id="education" name="domain" value="Formation professionnelle" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required> 
+                                    <label for="education" class="ml-3 block text-secondary cursor-pointer">Formation professionnelle</label> 
+                                </div> 
+                                <div class="flex items-center p-3 rounded-md hover:bg-gray-200 transition duration-150"> 
+                                    <input id="health" name="domain" value="Santé et dépendance" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required> 
+                                    <label for="health" class="ml-3 block text-secondary cursor-pointer">Santé et dépendance</label> 
+                                </div> 
+                                <div class="flex items-center p-3 rounded-md hover:bg-gray-200 transition duration-150"> 
+                                    <input id="agriculture" name="domain" value="Soutien agricole" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required> 
+                                    <label for="agriculture" class="ml-3 block text-secondary cursor-pointer">Soutien agricole</label> 
+                                </div> 
+                                <div class="flex items-center p-3 rounded-md hover:bg-gray-200 transition duration-150"> 
+                                    <input id="business" name="domain" value="Entrepreneuriat" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required> 
+                                    <label for="business" class="ml-3 block text-secondary cursor-pointer">Entrepreneuriat</label> 
+                                </div> 
+                                <div class="flex items-center p-3 rounded-md hover:bg-gray-200 transition duration-150"> 
+                                    <input id="emergency" name="domain" value="Urgence sociale" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required> 
+                                    <label for="emergency" class="ml-3 block text-secondary cursor-pointer">Urgence sociale</label> 
+                                </div> 
+                            </div> 
+                            <div class="mt-8 flex justify-end"> 
+                                <button type="button" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-accent transition duration-300 next-step">Suivant <i class="fas fa-arrow-right ml-2"></i></button> 
+                            </div> 
+                        </div> 
+                        <div class="step-form" id="step-2"> 
+                            <h3 class="text-xl font-semibold mb-6 text-primary">2. Vos informations personnelles</h3> 
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> 
+                                <div> 
+                                    <label for="first-name" class="block text-sm font-medium text-secondary mb-1">Prénom <span class="text-red-500">*</span></label> 
+                                    <input type="text" id="first-name" name="first-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required> 
+                                </div> 
+                                <div> 
+                                    <label for="last-name" class="block text-sm font-medium text-secondary mb-1">Nom <span class="text-red-500">*</span></label> 
+                                    <input type="text" id="last-name" name="last-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required> 
+                                </div> 
+                                <div> 
+                                    <label for="email" class="block text-sm font-medium text-secondary mb-1">Email <span class="text-red-500">*</span></label> 
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required> 
+                                </div> 
+                                <div> 
+                                    <label for="phone" class="block text-sm font-medium text-secondary mb-1">Téléphone <span class="text-red-500">*</span></label> 
+                                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required> 
+                                </div> 
+                                <div class="md:col-span-2"> 
+                                    <label for="address" class="block text-sm font-medium text-secondary mb-1">Adresse</label> 
+                                    <input type="text" id="address" name="address" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none"> 
+                                </div> 
+                                <div> 
+                                    <label for="city" class="block text-sm font-medium text-secondary mb-1">Ville</label> 
+                                    <input type="text" id="city" name="city" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none"> 
+                                </div> 
+                                <div> 
+                                    <label for="zip" class="block text-sm font-medium text-secondary mb-1">Code postal</label> 
+                                    <input type="text" id="zip" name="zip" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none"> 
+                                </div> 
+                                <div class="md:col-span-2"> 
+                                    <label for="status" class="block text-sm font-medium text-secondary mb-1">Statut social</label> 
+                                    <select id="status" name="status" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary bg-white shadow-sm focus:outline-none"> 
+                                        <option value="">Sélectionnez...</option> 
+                                        <option value="Employé">Employé</option> 
+                                        <option value="Chômeur">Chômeur</option> 
+                                        <option value="Étudiant">Étudiant</option> 
+                                        <option value="Retraité">Retraité</option> 
+                                        <option value="Personne handicapée">Personne handicapée</option> 
+                                        <option value="Autre">Autre</option> 
+                                    </select> 
+                                </div> 
+                            </div> 
+                            <div class="mt-8 flex justify-between"> 
+                                <button type="button" class="px-6 py-2 bg-gray-300 text-secondary rounded-md hover:bg-gray-400 transition duration-300 prev-step"><i class="fas fa-arrow-left mr-2"></i>Précédent</button> 
+                                <button type="button" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-accent transition duration-300 next-step">Suivant <i class="fas fa-arrow-right ml-2"></i></button> 
+                            </div> 
+                        </div> 
+                        <div class="step-form" id="step-3"> 
+                            <h3 class="text-xl font-semibold mb-6 text-primary">3. Description de votre besoin</h3> 
+                            <div> 
+                                <label for="project-description" class="block text-sm font-medium text-secondary mb-1">Décrivez votre projet ou besoin <span class="text-red-500">*</span> (minimum 300 caractères)</label> 
+                                <textarea id="project-description" name="project-description" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" minlength="300" required></textarea>
+                                <p class="text-sm text-gray-500 mt-1 text-right"><span id="char-count">0</span> / 300 caractères minimum</p> 
+                            </div> 
+                            <div class="mt-6"> 
+                                <label for="amount" class="block text-sm font-medium text-secondary mb-1">Montant de l'aide demandée (€) <span class="text-red-500">*</span></label> 
+                                <input type="number" id="amount" name="amount" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required> 
+                            </div> 
+                            <div class="mt-6"> 
+                                <label class="block text-sm font-medium text-secondary mb-1">Documents justificatifs (optionnel)</label> 
+                                <div class="mt-2 flex items-center"> 
+                                    <label for="file-upload" class="cursor-pointer bg-white border border-primary text-primary px-4 py-2 rounded-md hover:bg-light transition duration-300 shadow-sm focus-within:ring-2 focus-within:ring-primary"> 
+                                        <i class="fas fa-paperclip mr-2"></i>Choisir des fichiers 
+                                    </label> 
+                                    <input id="file-upload" name="files" type="file" class="hidden" multiple accept=".pdf,.jpg,.jpeg,.png"> 
+                                    <span id="file-name" class="ml-3 text-sm text-secondary">Aucun fichier sélectionné</span> 
+                                </div> 
+                                <p class="text-xs text-gray-500 mt-2">Formats acceptés : PDF, JPG, PNG. Taille max : 5Mo par fichier.</p> 
+                            </div> 
+                            <div class="mt-8 flex justify-between"> 
+                                <button type="button" class="px-6 py-2 bg-gray-300 text-secondary rounded-md hover:bg-gray-400 transition duration-300 prev-step"><i class="fas fa-arrow-left mr-2"></i>Précédent</button> 
+                                <button type="button" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-accent transition duration-300 next-step">Suivant <i class="fas fa-arrow-right ml-2"></i></button> 
+                            </div> 
+                        </div> 
+                        <div class="step-form" id="step-4"> 
+                            <h3 class="text-xl font-semibold mb-6 text-primary">4. Vérification et envoi</h3> 
+                            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6"> 
+                                <h4 class="font-semibold text-lg mb-4 border-b pb-2">Récapitulatif de votre demande</h4> 
+                                <div class="space-y-3 text-sm"> 
+                                    <p><span class="font-medium text-gray-600 w-32 inline-block">Domaine:</span> <span id="summary-domain" class="text-secondary">-</span></p> 
+                                    <p><span class="font-medium text-gray-600 w-32 inline-block">Nom:</span> <span id="summary-name" class="text-secondary">-</span></p> 
+                                    <p><span class="font-medium text-gray-600 w-32 inline-block">Email:</span> <span id="summary-email" class="text-secondary">-</span></p> 
+                                    <p><span class="font-medium text-gray-600 w-32 inline-block">Téléphone:</span> <span id="summary-phone" class="text-secondary">-</span></p> 
+                                    <p><span class="font-medium text-gray-600 w-32 inline-block align-top">Description:</span> <span id="summary-description" class="text-secondary inline-block max-w-md">-</span></p> 
+                                    <p><span class="font-medium text-gray-600 w-32 inline-block">Montant demandé:</span> <span id="summary-amount" class="text-secondary">-</span> €</p> 
+                                </div> 
+                            </div> 
+                            <div class="mb-6"> 
+                                <label class="block text-sm font-medium text-secondary mb-3">Méthode de contact préférée <span class="text-red-500">*</span></label> 
+                                <div class="space-y-3"> 
+                                    <div class="flex items-center"> 
+                                        <input id="contact-email" name="contact-method" type="radio" value="Email" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" checked required> 
+                                        <label for="contact-email" class="ml-3 block text-secondary cursor-pointer">Email</label> 
+                                    </div> 
+                                    <div class="flex items-center"> 
+                                        <input id="contact-phone" name="contact-method" value="Téléphone" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required>
+                                        <label for="contact-phone" class="ml-3 block text-secondary cursor-pointer">Téléphone</label> 
+                                    </div> 
+                                    <div class="flex items-center"> 
+                                        <input id="contact-whatsapp" name="contact-method" value="WhatsApp" type="radio" class="h-4 w-4 text-primary focus:ring-primary border-gray-300" required> 
+                                        <label for="contact-whatsapp" class="ml-3 block text-secondary cursor-pointer">WhatsApp</label> 
+                                    </div> 
+                                </div> 
+                            </div> 
+                            <div class="mt-6 mb-8 p-4 bg-blue-50 border border-blue-200 rounded-md"> 
+                                <div class="flex items-start"> 
+                                    <input id="consent" name="consent" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded mt-1" required> 
+                                    <label for="consent" class="ml-3 block text-sm text-secondary">Je certifie l'exactitude des informations fournies et j'accepte les <a href="#" target="_blank" class="text-primary hover:underline">conditions générales</a> et la <a href="#" target="_blank" class="text-primary hover:underline">politique de confidentialité</a> de l'INAP. <span class="text-red-500">*</span></label> 
+                                </div> 
+                            </div> 
+                            <div class="mt-8 flex justify-between"> 
+                                <button type="button" class="px-6 py-2 bg-gray-300 text-secondary rounded-md hover:bg-gray-400 transition duration-300 prev-step"><i class="fas fa-arrow-left mr-2"></i>Précédent</button> 
+                                <button type="submit" class="px-8 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 font-semibold text-lg shadow hover:shadow-md" id="submit-button"><i class="fas fa-paper-plane mr-2"></i>Envoyer ma demande</button> 
+                            </div> 
+                        </div> 
+                    </form> 
+                </div> 
+                <div id="success-message" class="hidden p-6 md:p-10 text-center"> 
+                    <div class="bg-green-50 border border-green-300 text-green-800 px-6 py-8 rounded-lg shadow-md mb-6 max-w-lg mx-auto"> 
+                        <i class="fas fa-check-circle text-5xl text-green-500 mb-4 block"></i> 
+                        <h3 class="text-2xl font-semibold mb-3">Votre demande a été envoyée avec succès !</h3> 
+                        <p class="mb-4 text-md">Nous avons bien reçu votre demande d'aide. Votre numéro de suivi est :</p> 
+                        <p class="font-bold text-xl mb-6 bg-green-100 py-2 px-4 inline-block rounded">INAP-2025-<span id="reference-number">00000</span></p> 
+                        <p class="text-sm">Un email de confirmation contenant les prochaines étapes vous a été envoyé. Notre équipe examinera votre dossier dans les meilleurs délais.</p> 
+                    </div> 
+                    <a href="#" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-accent transition duration-300 inline-block mt-4">Retour à l'accueil</a> 
+                </div> 
+            </div> 
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Ce que disent nos bénéficiaires</h2>
+            <p class="text-center text-gray-600 mb-8">Plus de 1600 témoignages positifs reçus</p>
+            
+            <div class="relative max-w-4xl mx-auto testimonial-container">
+                <div class="testimonial-slides" id="testimonialSlides">
+                    <!-- Les témoignages seront générés automatiquement par JavaScript -->
+                </div>
+                
+                <button class="absolute left-0 top-1/2 transform -translate-y-1/2 -ml-4 md:-ml-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition duration-300 z-10" 
+                        id="prevTestimonial" aria-label="Témoignage précédent">
+                    <i class="fas fa-chevron-left text-primary text-lg"></i>
+                </button>
+                
+                <button class="absolute right-0 top-1/2 transform -translate-y-1/2 -mr-4 md:-mr-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition duration-300 z-10" 
+                        id="nextTestimonial" aria-label="Témoignage suivant">
+                    <i class="fas fa-chevron-right text-primary text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="bg-white rounded-lg p-6 shadow-md inline-block">
+                    <p class="text-sm text-gray-600 mb-2">Témoignage <span id="currentTestimonialIndex">1</span> sur <span id="totalTestimonialsDisplay">1600+</span></p>
+                    <div class="w-64 bg-gray-200 rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full transition-all duration-300" id="testimonialProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Questions fréquentes (FAQ)</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="relative mb-8">
+                    <input type="text" id="faq-search" placeholder="Rechercher une question..." class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary pl-10 shadow-sm focus:outline-none">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <div class="space-y-4" id="faq-list">
+                    <div class="border border-gray-200 rounded-md overflow-hidden faq-item">
+                        <button class="w-full text-left p-4 bg-light hover:bg-gray-200 transition duration-300 flex justify-between items-center accordion-toggle focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset">
+                            <span class="font-medium text-secondary faq-question">Quels documents dois-je fournir pour ma demande ?</span>
+                            <i class="fas fa-chevron-down accordion-icon transition-transform duration-300 text-primary"></i>
+                        </button>
+                        <div class="accordion-content"> 
+                            <div class="p-4 border-t border-gray-200 text-secondary space-y-2"> 
+                                <p>La liste exacte des documents varie selon le type d'aide sollicitée. Cependant, préparez-vous généralement à fournir :</p> 
+                                <ul class="list-disc pl-6 space-y-1 text-sm"> 
+                                    <li>Une pièce d'identité officielle en cours de validité (Carte Nationale d'Identité, passeport, titre de séjour).</li> 
+                                    <li>Un justificatif de domicile récent (facture d'énergie, quittance de loyer de moins de 3 mois).</li> 
+                                    <li>Vos derniers avis d'imposition (ou de non-imposition) pour évaluer vos ressources.</li> 
+                                    <li>Un Relevé d'Identité Bancaire (RIB) pour le versement de l'aide.</li> 
+                                    <li>Des documents spécifiques liés à votre demande : devis pour des travaux, contrat de formation, attestation Pôle Emploi, livret de famille, certificat médical, etc.</li> 
+                                </ul> 
+                                <p class="mt-3 text-sm font-medium">Conseil : Rassemblez ces documents à l'avance pour accélérer le traitement de votre dossier. La plateforme en ligne vous guidera sur les pièces exactes requises pour votre situation.</p> 
+                                <div class="flex items-center mt-4 pt-2 border-t border-gray-100"> 
+                                    <p class="text-xs text-gray-500 mr-4">Utile ?</p> 
+                                    <button class="text-green-500 hover:text-green-700 mr-2 text-sm transition duration-300"><i class="far fa-thumbs-up mr-1"></i> Oui</button> 
+                                    <button class="text-red-500 hover:text-red-700 text-sm transition duration-300"><i class="far fa-thumbs-down mr-1"></i> Non</button> 
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-md overflow-hidden faq-item">
+                         <button class="w-full text-left p-4 bg-light hover:bg-gray-200 transition duration-300 flex justify-between items-center accordion-toggle focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset">
+                            <span class="font-medium text-secondary faq-question">Combien de temps faut-il pour obtenir une réponse ?</span>
+                             <i class="fas fa-chevron-down accordion-icon transition-transform duration-300 text-primary"></i>
+                        </button>
+                        <div class="accordion-content"> 
+                            <div class="p-4 border-t border-gray-200 text-secondary space-y-2"> 
+                                <p>Nous nous efforçons de traiter votre demande le plus rapidement possible. Les délais moyens sont les suivants :</p> 
+                                <ul class="list-disc pl-6 space-y-1 text-sm"> 
+                                    <li><strong>Urgence sociale :</strong> Traitement prioritaire, réponse généralement sous 48 à 72 heures ouvrées après réception du dossier complet.</li> 
+                                    <li><strong>Aides courantes (logement, santé, formation...) :</strong> Comptez en moyenne 2 à 4 semaines pour l'instruction et la décision.</li> 
+                                    <li><strong>Aides spécifiques (entrepreneuriat, agricole...) :</strong> L'analyse étant plus complexe, le délai peut s'étendre de 4 à 6 semaines.</li> 
+                                </ul> 
+                                <p class="mt-3 text-sm">Ces délais sont indicatifs et peuvent varier selon l'afflux de demandes et la complétude de votre dossier. Vous recevrez un accusé de réception confirmant le dépôt et pourrez suivre l'avancement via votre espace personnel ou nos notifications.</p>
+                                <div class="flex items-center mt-4 pt-2 border-t border-gray-100"> 
+                                    <p class="text-xs text-gray-500 mr-4">Utile ?</p> 
+                                    <button class="text-green-500 hover:text-green-700 mr-2 text-sm transition duration-300"><i class="far fa-thumbs-up mr-1"></i> Oui</button> 
+                                    <button class="text-red-500 hover:text-red-700 text-sm transition duration-300"><i class="far fa-thumbs-down mr-1"></i> Non</button> 
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-md overflow-hidden faq-item">
+                         <button class="w-full text-left p-4 bg-light hover:bg-gray-200 transition duration-300 flex justify-between items-center accordion-toggle focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset">
+                            <span class="font-medium text-secondary faq-question">Qui peut bénéficier des aides de l'INAP ?</span>
+                            <i class="fas fa-chevron-down accordion-icon transition-transform duration-300 text-primary"></i>
+                        </button>
+                        <div class="accordion-content"> 
+                            <div class="p-4 border-t border-gray-200 text-secondary space-y-2"> 
+                                <p>L'INAP s'adresse à un large public résidant en France et rencontrant des difficultés. Les principaux critères d'éligibilité incluent :</p> 
+                                <ul class="list-disc pl-6 space-y-1 text-sm"> 
+                                    <li><strong>Résidence :</strong> Habiter en France de manière stable et régulière.</li> 
+                                    <li><strong>Ressources :</strong> Disposer de revenus modestes, inférieurs aux plafonds fixés pour chaque aide (ces plafonds dépendent de la composition de votre foyer).</li> 
+                                    <li><strong>Situation :</strong> Faire face à une situation justifiant l'aide (difficultés financières, projet professionnel, problème de logement, besoin lié à la santé ou au handicap, etc.).</li> 
+                                </ul> 
+                                <p class="mt-3 text-sm">Certaines aides ont des critères plus spécifiques (âge pour les jeunes, statut pour les agriculteurs...). Le formulaire de demande en ligne vous aidera à déterminer votre éligibilité. N'hésitez pas à <a href="#contact" class="text-primary hover:underline">nous contacter</a> en cas de doute.</p> 
+                                <div class="flex items-center mt-4 pt-2 border-t border-gray-100"> 
+                                    <p class="text-xs text-gray-500 mr-4">Utile ?</p> 
+                                    <button class="text-green-500 hover:text-green-700 mr-2 text-sm transition duration-300"><i class="far fa-thumbs-up mr-1"></i> Oui</button> 
+                                    <button class="text-red-500 hover:text-red-700 text-sm transition duration-300"><i class="far fa-thumbs-down mr-1"></i> Non</button> 
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                     <div class="border border-gray-200 rounded-md overflow-hidden faq-item">
+                         <button class="w-full text-left p-4 bg-light hover:bg-gray-200 transition duration-300 flex justify-between items-center accordion-toggle focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset">
+                            <span class="font-medium text-secondary faq-question">Comment suivre l'avancement de ma demande ?</span>
+                             <i class="fas fa-chevron-down accordion-icon transition-transform duration-300 text-primary"></i>
+                        </button>
+                        <div class="accordion-content"> 
+                            <div class="p-4 border-t border-gray-200 text-secondary space-y-2"> 
+                                <p>Après avoir soumis votre demande, vous disposez de plusieurs moyens pour suivre son statut :</p> 
+                                <ul class="list-disc pl-6 space-y-1 text-sm"> 
+                                    <li><strong>Espace Personnel :</strong> C'est le moyen le plus direct. Connectez-vous à votre compte sur notre site pour voir le statut détaillé (Réceptionné, En cours d'instruction, En attente de pièces, Décision prise...).</li> 
+                                    <li><strong>Notifications Email :</strong> Activez les notifications pour être informé automatiquement des étapes importantes.</li>
+                                    <li><strong>Contact Direct :</strong> Vous pouvez nous joindre par WhatsApp ou Email (voir section <a href="#contact" class="text-primary hover:underline">Contact</a>) en précisant votre nom et si possible votre numéro de dossier (reçu dans l'email de confirmation).</li> 
+                                    <li><strong>Chatbot :</strong> Pour une réponse rapide sur le statut général, utilisez l'assistant virtuel disponible sur le site.</li> 
+                                </ul> 
+                                <p class="mt-3 text-sm">Pensez à vérifier régulièrement votre dossier pour toute demande de pièces complémentaires qui pourrait être nécessaire.</p> 
+                                <div class="flex items-center mt-4 pt-2 border-t border-gray-100"> 
+                                    <p class="text-xs text-gray-500 mr-4">Utile ?</p> 
+                                    <button class="text-green-500 hover:text-green-700 mr-2 text-sm transition duration-300"><i class="far fa-thumbs-up mr-1"></i> Oui</button> 
+                                    <button class="text-red-500 hover:text-red-700 text-sm transition duration-300"><i class="far fa-thumbs-down mr-1"></i> Non</button> 
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <p id="faq-no-results" class="text-center text-gray-500 mt-6 hidden">Aucune question correspondante trouvée.</p>
+                <div class="mt-10 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg text-center border border-blue-100"> 
+                    <h3 class="text-xl font-semibold mb-3 text-primary">Votre question n'est pas listée ?</h3> 
+                    <p class="text-secondary mb-5">Notre équipe est là pour vous aider personnellement.</p> 
+                    <a href="#contact" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-accent transition duration-300 inline-block font-medium shadow-md hover:shadow-lg"> 
+                        <i class="fas fa-headset mr-2"></i>Nous contacter directement 
+                    </a> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-16 bg-light">
+        <div class="container mx-auto px-4"> 
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Actualités de l'INAP</h2> 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Innovation technologique avec interface numérique moderne" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Innovation • 20 juillet 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">Lancement de la plateforme numérique INAP 2.0</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Une nouvelle interface plus intuitive permet désormais de suivre en temps réel l'avancement des demandes d'aide grâce à l'intelligence artificielle.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm transition duration-300">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Énergies renouvelables avec panneaux solaires" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Environnement • 18 juillet 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">25 millions d'euros pour la transition énergétique des ménages</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Un nouveau fonds exceptionnel aide les familles à installer des panneaux solaires et pompes à chaleur avec jusqu'à 80% de prise en charge.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm transition duration-300">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Formation professionnelle en groupe" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Formation • 15 juillet 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">Record historique : 97% des formés trouvent un emploi</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Les nouvelles formations en cybersécurité et développement durable affichent des taux d'insertion professionnelle exceptionnels.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm transition duration-300">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Familles aidées lors d'un événement communautaire" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Bilan • 5 avril 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">Plus de 70.000 familles soutenues ce trimestre</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Le dernier bilan montre une augmentation de 12% des aides attribuées aux familles, avec une attention particulière aux ménages monoparentaux.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm transition duration-300">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Agriculture moderne et durable" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Agriculture • 28 mars 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">Aide exceptionnelle débloquée pour les jeunes agriculteurs</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Face aux défis climatiques, un fonds de 15 millions d'euros est mis en place pour accompagner la transition écologique des exploitations.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm transition duration-300">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Formation en ligne et apprentissage numérique" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Emploi • 15 mars 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">85% des bénéficiaires de formations trouvent un emploi</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Le rapport d'impact révèle l'efficacité des parcours de formation financés par l'INAP, notamment dans le secteur numérique.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm transition duration-300">Lire la suite →</a> 
+                    </div> 
+                </div>
+            </div> 
+            <div class="text-center mt-12"> 
+                <a href="#" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-accent transition duration-300 inline-block font-medium">Toutes les actualités</a> 
+            </div> 
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white border-t border-gray-100">
+         <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Contactez l'équipe INAP</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-primary border-b pb-2">Nos coordonnées directes</h3>
+                     <div class="space-y-6">
+                          <div class="flex items-start"> 
+                            <div class="flex-shrink-0 bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mr-4"> 
+                                <i class="fab fa-whatsapp text-2xl"></i> 
+                            </div> 
+                            <div> 
+                                <h4 class="font-medium text-lg">WhatsApp</h4> 
+                                <a href="https://wa.me/687856506" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline text-lg block transition duration-300">+687 85.65.06</a> 
+                                <p class="text-sm text-gray-500 mt-1">Idéal pour une réponse rapide (garantie sous 24h ouvrées).</p> 
+                            </div> 
+                          </div>
+                          <div class="flex items-start"> 
+                            <div class="flex-shrink-0 bg-blue-100 text-primary rounded-full w-12 h-12 flex items-center justify-center mr-4"> 
+                                <i class="fas fa-envelope text-xl"></i> 
+                            </div> 
+                            <div> 
+                                <h4 class="font-medium text-lg">Email</h4> 
+                                <a href="mailto:ttagliafero@gmail.com" class="text-secondary hover:underline text-lg block transition duration-300">ttagliafero@gmail.com</a> 
+                                <p class="text-sm text-gray-500 mt-1">Pour les demandes détaillées (réponse sous 48h ouvrées).</p> 
+                            </div> 
+                          </div>
+                          <div class="flex items-start"> 
+                            <div class="flex-shrink-0 bg-purple-100 text-purple-600 rounded-full w-12 h-12 flex items-center justify-center mr-4"> 
+                                <i class="fas fa-clock text-xl"></i> 
+                            </div> 
+                            <div> 
+                                <h4 class="font-medium text-lg">Disponibilité</h4> 
+                                <p class="text-secondary text-lg">Disponible à tout moment, 24h/24 et 7j/7</p> 
+                                <p class="text-sm text-gray-500 mt-1">Nous nous efforçons de répondre le plus vite possible.</p> 
+                            </div> 
+                          </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-primary border-b pb-2">Formulaire de contact</h3>
+                    <form id="contact-form" action="https://formspree.io/f/xzbldrvw" method="POST" class="space-y-4">
+                        <div>
+                            <label for="contact-name" class="block text-sm font-medium text-secondary mb-1">Nom complet <span class="text-red-500">*</span></label>
+                            <input type="text" id="contact-name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="contact-email-form" class="block text-sm font-medium text-secondary mb-1">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="contact-email-form" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="contact-subject" class="block text-sm font-medium text-secondary mb-1">Sujet <span class="text-red-500">*</span></label>
+                            <select id="contact-subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary bg-white shadow-sm focus:outline-none" required>
+                                <option value="">-- Sélectionnez un sujet --</option>
+                                <option value="Question sur une demande existante">Question sur une demande existante</option>
+                                <option value="Demande d'information générale">Demande d'information générale</option>
+                                <option value="Problème technique sur le site">Problème technique sur le site</option>
+                                <option value="Partenariat ou Presse">Partenariat ou Presse</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-sm font-medium text-secondary mb-1">Votre message <span class="text-red-500">*</span></label>
+                            <textarea id="contact-message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-primary focus:border-primary shadow-sm focus:outline-none" required></textarea>
+                        </div>
+                         <input type="hidden" name="_language" value="fr">
+                        <div class="pt-2">
+                            <button type="submit" id="contact-submit-button" class="w-full px-6 py-3 bg-primary text-white rounded-md hover:bg-accent transition duration-300 font-semibold text-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                                Envoyer votre message
+                            </button>
+                        </div>
+                        <p id="contact-form-status" class="text-sm text-center mt-4 h-4"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-light py-12">
+        <div class="container mx-auto px-4"> 
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"> 
+                <div class="mb-6 md:mb-0"> 
+                    <h3 class="text-lg font-semibold mb-4 text-white">INAP</h3> 
+                    <p class="text-sm mb-4">Initiative Nationale d'Aide à la Population</p> 
+                    <p class="text-sm italic">« Une main tendue pour construire demain. »</p> 
+                </div> 
+                <div class="mb-6 md:mb-0"> 
+                    <h3 class="text-lg font-semibold mb-4 text-white">Liens utiles</h3> 
+                    <ul class="space-y-2 text-sm"> 
+                        <li><a href="#" class="hover:text-white hover:underline transition duration-300">Politique de confidentialité</a></li> 
+                        <li><a href="#" class="hover:text-white hover:underline transition duration-300">Conditions générales d'utilisation</a></li> 
+                        <li><a href="#" class="hover:text-white hover:underline transition duration-300">Politique des cookies</a></li> 
+                        <li><a href="#" class="hover:text-white hover:underline transition duration-300">Mentions légales</a></li> 
+                        <li><a href="#faq" class="hover:text-white hover:underline transition duration-300">FAQ</a></li> 
+                    </ul> 
+                </div> 
+                <div class="mb-6 md:mb-0"> 
+                    <h3 class="text-lg font-semibold mb-4 text-white">Navigation</h3> 
+                    <ul class="space-y-2 text-sm"> 
+                        <li><a href="#" class="hover:text-white hover:underline transition duration-300">Accueil</a></li> 
+                        <li><a href="#about" class="hover:text-white hover:underline transition duration-300">À propos</a></li> 
+                        <li><a href="#domains" class="hover:text-white hover:underline transition duration-300">Domaines d'intervention</a></li> 
+                        <li><a href="#apply" class="hover:text-white hover:underline transition duration-300">Faire une demande</a></li> 
+                        <li><a href="#contact" class="hover:text-white hover:underline transition duration-300">Contact</a></li> 
+                        <li><a href="#news" class="hover:text-white hover:underline transition duration-300">Actualités</a></li> 
+                    </ul> 
+                </div> 
+                <div> 
+                    <h3 class="text-lg font-semibold mb-4 text-white">Suivez-nous</h3> 
+                    <div class="flex space-x-3 mb-6"> 
+                        <a href="#" aria-label="Facebook" class="bg-primary bg-opacity-40 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-opacity-60 transition duration-300"> 
+                            <i class="fab fa-facebook-f"></i> 
+                        </a> 
+                        <a href="#" aria-label="Twitter" class="bg-primary bg-opacity-40 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-opacity-60 transition duration-300"> 
+                            <i class="fab fa-twitter"></i> 
+                        </a> 
+                        <a href="#" aria-label="LinkedIn" class="bg-primary bg-opacity-40 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-opacity-60 transition duration-300"> 
+                            <i class="fab fa-linkedin-in"></i> 
+                        </a> 
+                        <a href="#" aria-label="YouTube" class="bg-primary bg-opacity-40 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-opacity-60 transition duration-300"> 
+                            <i class="fab fa-youtube"></i> 
+                        </a> 
+                    </div> 
+                    <p class="text-xs text-gray-400">© 2025 Initiative Nationale d'Aide à la Population (INAP). Tous droits réservés.</p> 
+                </div> 
+            </div> 
+        </div>
+    </footer>
+
+     <!-- Cookie Banner --> 
+     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-secondary text-white p-4 shadow-lg z-[60]" style="display: none;"> 
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4"> 
+            <div class="text-sm text-light"> 
+                Ce site utilise des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre <a href="#" class="text-primary hover:underline font-medium">politique de cookies</a>. 
+            </div> 
+            <div class="flex space-x-3 flex-shrink-0"> 
+                <button id="cookie-reject" class="px-4 py-1.5 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition duration-300 text-sm">Refuser</button> 
+                <button id="cookie-accept" class="px-4 py-1.5 bg-primary text-white rounded-md hover:bg-accent transition duration-300 text-sm font-medium">Accepter</button> 
+            </div> 
+        </div> 
+     </div> 
+     
+     <!-- Chatbot Trigger --> 
+     <button id="chatbot-trigger" aria-label="Ouvrir le chatbot" class="fixed bottom-6 left-6 bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg cursor-pointer z-40 hover:bg-accent transition duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"> 
+        <i class="fas fa-comment-dots text-2xl"></i> 
+     </button> 
+     
+     <!-- Chatbot Widget --> 
+     <div id="chatbot-widget" class="hidden fixed bottom-24 left-6 w-80 h-96 bg-white rounded-lg shadow-xl z-40 flex flex-col overflow-hidden border border-gray-200"> 
+        <header class="bg-primary text-white p-3 flex justify-between items-center flex-shrink-0"> 
+            <h4 class="font-semibold text-sm">Assistant Virtuel INAP</h4> 
+            <button id="chatbot-close" class="text-white hover:text-gray-200 text-xl leading-none focus:outline-none">×</button> 
+        </header> 
+        <div class="flex-grow p-4 overflow-y-auto bg-gray-50 text-sm" id="chatbot-messages">
+            <div class="mb-4 p-3 bg-blue-100 rounded-lg">
+                <p class="text-sm">Bonjour ! Je suis votre assistant virtuel INAP. Comment puis-je vous aider aujourd'hui ?</p>
+            </div>
+        </div> 
+        <footer class="p-3 border-t bg-white flex-shrink-0"> 
+            <div class="flex">
+                <input type="text" id="chatbot-input" placeholder="Posez votre question..." class="flex-1 border border-gray-300 rounded-l-md p-2 text-sm focus:ring-primary focus:border-primary focus:outline-none"> 
+                <button id="chatbot-send" class="bg-primary text-white px-4 py-2 rounded-r-md hover:bg-accent transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </footer> 
+     </div>
+
+    <!-- JavaScript complet et fonctionnel -->
     <script>
     (function() {
         'use strict';
@@ -205,492 +865,55 @@
         let testimonialInterval;
         const totalTestimonials = 1600;
 
-        // Base de données complète des témoignages
+        // Base de données des témoignages
         const testimonialDatabase = {
             firstNames: [
                 "Marie", "Pierre", "Sophie", "Julien", "Amina", "David", "Fatima", "Kevin", "Chloé", "Mohamed",
                 "Isabelle", "Nicolas", "Sandrine", "Thomas", "Latifa", "Paul", "Céline", "Youssef", "Valérie", "Ahmed",
                 "Nathalie", "François", "Samira", "Anthony", "Émilie", "Hassan", "Catherine", "Karim", "Christelle", "Rachid",
-                "Aurélie", "Samir", "Patricia", "Omar", "Stéphanie", "Mehdi", "Virginie", "Tarek", "Caroline", "Farid"
+                "Aurélie", "Samir", "Patricia", "Omar", "Stéphanie", "Mehdi", "Virginie", "Tarek", "Caroline", "Farid",
+                "Muriel", "Adrien", "Khadija", "Sébastien", "Leila", "Vincent", "Yasmina", "Maxime", "Nadia", "Romain",
+                "Alice", "Léa", "Manon", "Clara", "Camille", "Inès", "Sarah", "Jade", "Lina", "Emma", "Lola", "Mila",
+                "Juliette", "Eva", "Louise", "Anna", "Rose", "Jeanne", "Gabrielle", "Gabriel", "Raphaël", "Arthur",
+                "Louis", "Lucas", "Adam", "Jules", "Hugo", "Maël", "Léo", "Sacha", "Noah", "Ethan", "Mathis", "Clément"
             ],
             lastNames: [
                 "Martin", "Bernard", "Thomas", "Petit", "Robert", "Richard", "Durand", "Dubois", "Moreau", "Laurent",
                 "Simon", "Michel", "Lefebvre", "Leroy", "Roux", "Bertrand", "Morel", "Fournier", "Girard", "Bonnet",
-                "Dupont", "Lambert", "Fontaine", "Rousseau", "Vincent", "Muller", "Lefevre", "Faure", "Andre", "Mercier"
+                "Dupont", "Lambert", "Fontaine", "Rousseau", "Vincent", "Muller", "Lefevre", "Faure", "Andre", "Mercier",
+                "Blanc", "Guerin", "Boyer", "Garnier", "Chevalier", "Francois", "Legrand", "Gauthier", "Garcia", "Perrin",
+                "Robin", "Clement", "Morin", "Nicolas", "Henry", "Roussel", "Matthieu", "Gautier", "Masson", "Marchand"
             ],
             testimonials: [
-                "Grâce à l'INAP, j'ai pu financer ma formation en développement web. Aujourd'hui, j'ai trouvé un emploi stable et je peux subvenir aux besoins de ma famille. Merci infiniment !",
-                "L'aide au logement m'a permis d'éviter l'expulsion. L'équipe a été très réactive et m'a accompagné dans toutes les démarches. C'est un vrai soulagement.",
-                "En tant qu'agriculteur, les subventions pour moderniser mon exploitation ont été essentielles. Ma productivité a augmenté de 30% en six mois !",
-                "L'INAP m'a aidé à lancer mon entreprise de services à la personne. Aujourd'hui, j'emploie 5 personnes et mon chiffre d'affaires ne cesse de croître.",
-                "Après un accident, les aides pour l'adaptation de mon logement ont changé ma vie. Je retrouve enfin mon autonomie au quotidien."
-            ],
-            cities: [
-                "Paris", "Lyon", "Marseille", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille",
-                "Rennes", "Reims", "Le Havre", "Saint-Étienne", "Toulon", "Grenoble", "Dijon", "Angers", "Nîmes", "Villeurbanne"
-            ]
-        };
-
-        // Génération des témoignages
-        function generateTestimonials() {
-            const slidesContainer = document.getElementById('testimonialSlides');
-            if (!slidesContainer) return;
-
-            // Générer 10 témoignages visibles
-            for (let i = 0; i < 10; i++) {
-                const firstName = testimonialDatabase.firstNames[Math.floor(Math.random() * testimonialDatabase.firstNames.length)];
-                const lastName = testimonialDatabase.lastNames[Math.floor(Math.random() * testimonialDatabase.lastNames.length)];
-                const city = testimonialDatabase.cities[Math.floor(Math.random() * testimonialDatabase.cities.length)];
-                const testimonial = testimonialDatabase.testimonials[Math.floor(Math.random() * testimonialDatabase.testimonials.length)];
-                
-                const slideHTML = `
-                    <div class="testimonial-slide ${i === 0 ? 'active' : ''}" data-index="${i}">
-                        <div class="bg-white p-8 rounded-lg shadow-md mx-4">
-                            <div class="flex items-center mb-4">
-                                <div class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
-                                    <span class="font-bold">${firstName.charAt(0)}</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-lg">${firstName} ${lastName.charAt(0)}.</h4>
-                                    <p class="text-sm text-gray-600">${city}</p>
-                                </div>
-                            </div>
-                            <p class="text-secondary italic mb-4">"${testimonial}"</p>
-                            <div class="flex text-yellow-500">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                slidesContainer.insertAdjacentHTML('beforeend', slideHTML);
-            }
-
-            testimonialSlides = document.querySelectorAll('.testimonial-slide');
-        }
-
-        // Navigation du carrousel
-        function showTestimonial(index) {
-            if (!testimonialSlides.length) return;
-            
-            testimonialSlides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-            
-            if (testimonialSlides[index]) {
-                testimonialSlides[index].classList.add('active');
-            }
-            
-            // Mise à jour de l'indicateur de progression
-            const progressBar = document.getElementById('testimonialProgressBar');
-            const currentIndex = document.getElementById('currentTestimonialIndex');
-            
-            if (progressBar && currentIndex) {
-                progressBar.style.width = `${((index + 1) / testimonialSlides.length) * 100}%`;
-                currentIndex.textContent = index + 1;
-            }
-        }
-
-        function nextTestimonial() {
-            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialSlides.length;
-            showTestimonial(currentTestimonialIndex);
-        }
-
-        function prevTestimonial() {
-            currentTestimonialIndex = currentTestimonialIndex === 0 ? testimonialSlides.length - 1 : currentTestimonialIndex - 1;
-            showTestimonial(currentTestimonialIndex);
-        }
-
-        // Initialisation du carrousel
-        function initTestimonialCarousel() {
-            generateTestimonials();
-            
-            const nextBtn = document.getElementById('nextTestimonial');
-            const prevBtn = document.getElementById('prevTestimonial');
-            
-            if (nextBtn) nextBtn.addEventListener('click', nextTestimonial);
-            if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
-            
-            // Auto-défilement
-            testimonialInterval = setInterval(nextTestimonial, 5000);
-            
-            // Pause au survol
-            const container = document.querySelector('.testimonial-container');
-            if (container) {
-                container.addEventListener('mouseenter', () => clearInterval(testimonialInterval));
-                container.addEventListener('mouseleave', () => {
-                    testimonialInterval = setInterval(nextTestimonial, 5000);
-                });
-            }
-        }
-
-        // Gestion des formulaires multi-étapes
-        let currentStep = 1;
-        const maxSteps = 4;
-
-        function updateFormProgress() {
-            const progressBar = document.getElementById('form-progress');
-            if (progressBar) {
-                const progressPercent = (currentStep / maxSteps) * 100;
-                progressBar.style.width = progressPercent + '%';
-            }
-        }
-
-        function showStep(stepNumber) {
-            // Masquer toutes les étapes
-            document.querySelectorAll('.step-form').forEach(step => {
-                step.classList.remove('active');
-            });
-            
-            // Afficher l'étape courante
-            const targetStep = document.getElementById(`step-${stepNumber}`);
-            if (targetStep) {
-                targetStep.classList.add('active');
-            }
-            
-            updateFormProgress();
-        }
-
-        function validateStep(stepNumber) {
-            const currentStepElement = document.getElementById(`step-${stepNumber}`);
-            if (!currentStepElement) return false;
-            
-            const requiredFields = currentStepElement.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('border-red-500');
-                    isValid = false;
-                } else {
-                    field.classList.remove('border-red-500');
-                }
-            });
-            
-            return isValid;
-        }
-
-        function updateSummary() {
-            // Récupérer les données du formulaire
-            const domain = document.querySelector('input[name="domain"]:checked')?.value || '-';
-            const firstName = document.getElementById('first-name')?.value || '';
-            const lastName = document.getElementById('last-name')?.value || '';
-            const email = document.getElementById('email')?.value || '-';
-            const phone = document.getElementById('phone')?.value || '-';
-            const description = document.getElementById('project-description')?.value || '-';
-            const amount = document.getElementById('amount')?.value || '-';
-            
-            // Mettre à jour le résumé
-            document.getElementById('summary-domain').textContent = domain;
-            document.getElementById('summary-name').textContent = `${firstName} ${lastName}`.trim();
-            document.getElementById('summary-email').textContent = email;
-            document.getElementById('summary-phone').textContent = phone;
-            document.getElementById('summary-description').textContent = description.substring(0, 100) + (description.length > 100 ? '...' : '');
-            document.getElementById('summary-amount').textContent = amount;
-        }
-
-        // Gestion des étapes du formulaire
-        function initFormSteps() {
-            // Boutons Suivant
-            document.querySelectorAll('.next-step').forEach(button => {
-                button.addEventListener('click', () => {
-                    if (validateStep(currentStep)) {
-                        if (currentStep < maxSteps) {
-                            currentStep++;
-                            showStep(currentStep);
-                            if (currentStep === 4) {
-                                updateSummary();
-                            }
-                        }
-                    }
-                });
-            });
-            
-            // Boutons Précédent
-            document.querySelectorAll('.prev-step').forEach(button => {
-                button.addEventListener('click', () => {
-                    if (currentStep > 1) {
-                        currentStep--;
-                        showStep(currentStep);
-                    }
-                });
-            });
-        }
-
-        // Compteur de caractères
-        function initCharacterCounter() {
-            const textarea = document.getElementById('project-description');
-            const counter = document.getElementById('char-count');
-            
-            if (textarea && counter) {
-                textarea.addEventListener('input', () => {
-                    const count = textarea.value.length;
-                    counter.textContent = count;
-                    
-                    if (count >= 300) {
-                        counter.classList.add('text-green-600');
-                        counter.classList.remove('text-red-500');
-                    } else {
-                        counter.classList.add('text-red-500');
-                        counter.classList.remove('text-green-600');
-                    }
-                });
-            }
-        }
-
-        // Gestion des accordéons FAQ
-        function initFAQ() {
-            document.querySelectorAll('.accordion-toggle').forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const faqItem = toggle.closest('.faq-item');
-                    const isActive = faqItem.classList.contains('active');
-                    
-                    // Fermer tous les autres accordéons
-                    document.querySelectorAll('.faq-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Ouvrir/fermer l'accordéon cliqué
-                    if (!isActive) {
-                        faqItem.classList.add('active');
-                    }
-                });
-            });
-        }
-
-        // Recherche FAQ
-        function initFAQSearch() {
-            const searchInput = document.getElementById('faq-search');
-            const faqItems = document.querySelectorAll('.faq-item');
-            const noResults = document.getElementById('faq-no-results');
-            
-            if (searchInput) {
-                searchInput.addEventListener('input', (e) => {
-                    const searchTerm = e.target.value.toLowerCase().trim();
-                    let hasResults = false;
-                    
-                    faqItems.forEach(item => {
-                        const question = item.querySelector('.faq-question').textContent.toLowerCase();
-                        if (question.includes(searchTerm) || searchTerm === '') {
-                            item.style.display = 'block';
-                            hasResults = true;
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                    
-                    if (noResults) {
-                        noResults.style.display = hasResults ? 'none' : 'block';
-                    }
-                });
-            }
-        }
-
-        // Gestion des dropdowns
-        function initDropdowns() {
-            const dropdownTrigger = document.getElementById('linap-menu-trigger');
-            const dropdownMenu = document.getElementById('linap-menu');
-            
-            if (dropdownTrigger && dropdownMenu) {
-                dropdownTrigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const isOpen = dropdownMenu.classList.contains('active');
-                    
-                    if (isOpen) {
-                        dropdownMenu.classList.remove('active');
-                        dropdownMenu.classList.add('hidden');
-                        dropdownTrigger.classList.remove('open');
-                        dropdownTrigger.setAttribute('aria-expanded', 'false');
-                    } else {
-                        dropdownMenu.classList.add('active');
-                        dropdownMenu.classList.remove('hidden');
-                        dropdownTrigger.classList.add('open');
-                        dropdownTrigger.setAttribute('aria-expanded', 'true');
-                    }
-                });
-                
-                // Fermer le dropdown en cliquant ailleurs
-                document.addEventListener('click', (e) => {
-                    if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                        dropdownMenu.classList.remove('active');
-                        dropdownMenu.classList.add('hidden');
-                        dropdownTrigger.classList.remove('open');
-                        dropdownTrigger.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        }
-
-        // Soumission du formulaire principal
-        function initFormSubmission() {
-            const form = document.getElementById('grant-application');
-            const successMessage = document.getElementById('success-message');
-            const formContainer = document.getElementById('form-steps-container');
-            const referenceNumber = document.getElementById('reference-number');
-            
-            if (form) {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    if (!validateStep(4)) {
-                        alert('Veuillez remplir tous les champs obligatoires et cocher la case de consentement.');
-                        return;
-                    }
-                    
-                    // Simulation d'envoi
-                    setTimeout(() => {
-                        if (formContainer) formContainer.style.display = 'none';
-                        if (successMessage) successMessage.classList.remove('hidden');
-                        
-                        // Générer un numéro de référence
-                        if (referenceNumber) {
-                            const refNum = Math.floor(Math.random() * 99999).toString().padStart(5, '0');
-                            referenceNumber.textContent = refNum;
-                        }
-                        
-                        // Scroll vers le message de succès
-                        successMessage?.scrollIntoView({ behavior: 'smooth' });
-                    }, 1500);
-                });
-            }
-        }
-
-        // Gestion du formulaire de contact
-        function initContactForm() {
-            const contactForm = document.getElementById('contact-form');
-            const statusElement = document.getElementById('contact-form-status');
-            const submitButton = document.getElementById('contact-submit-button');
-            
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    if (submitButton) submitButton.disabled = true;
-                    if (statusElement) {
-                        statusElement.textContent = 'Envoi en cours...';
-                        statusElement.className = 'text-sm text-center mt-4 h-4 text-blue-600';
-                    }
-                    
-                    // Utiliser Formspree pour l'envoi
-                    const formData = new FormData(contactForm);
-                    
-                    fetch(contactForm.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            if (statusElement) {
-                                statusElement.textContent = 'Message envoyé avec succès !';
-                                statusElement.className = 'text-sm text-center mt-4 h-4 text-green-600';
-                            }
-                            contactForm.reset();
-                        } else {
-                            throw new Error('Erreur d\'envoi');
-                        }
-                    })
-                    .catch(error => {
-                        if (statusElement) {
-                            statusElement.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
-                            statusElement.className = 'text-sm text-center mt-4 h-4 text-red-600';
-                        }
-                    })
-                    .finally(() => {
-                        if (submitButton) submitButton.disabled = false;
-                    });
-                });
-            }
-        }
-
-        // Gestion des cookies
-        function initCookieBanner() {
-            const banner = document.getElementById('cookie-banner');
-            const acceptBtn = document.getElementById('cookie-accept');
-            const rejectBtn = document.getElementById('cookie-reject');
-            
-            // Vérifier si l'utilisateur a déjà fait un choix
-            if (!localStorage.getItem('cookiesAccepted') && banner) {
-                banner.style.display = 'block';
-            }
-            
-            if (acceptBtn) {
-                acceptBtn.addEventListener('click', () => {
-                    localStorage.setItem('cookiesAccepted', 'true');
-                    if (banner) banner.style.display = 'none';
-                });
-            }
-            
-            if (rejectBtn) {
-                rejectBtn.addEventListener('click', () => {
-                    localStorage.setItem('cookiesAccepted', 'false');
-                    if (banner) banner.style.display = 'none';
-                });
-            }
-        }
-
-        // Chatbot simple
-        function initChatbot() {
-            const trigger = document.getElementById('chatbot-trigger');
-            const widget = document.getElementById('chatbot-widget');
-            const closeBtn = document.getElementById('chatbot-close');
-            
-            if (trigger && widget) {
-                trigger.addEventListener('click', () => {
-                    widget.classList.toggle('hidden');
-                });
-            }
-            
-            if (closeBtn && widget) {
-                closeBtn.addEventListener('click', () => {
-                    widget.classList.add('hidden');
-                });
-            }
-        }
-
-        // Navigation fluide
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Initialisation au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-            initTestimonialCarousel();
-            initFormSteps();
-            initCharacterCounter();
-            initFAQ();
-            initFAQSearch();
-            initDropdowns();
-            initFormSubmission();
-            initContactForm();
-            initCookieBanner();
-            initChatbot();
-            initSmoothScroll();
-            
-            console.log('INAP - Site web initialisé avec succès');
-        });
-
-    })();
-    </script>
-
-</body>
-</html>
+                {
+                    text: "Grâce à l'INAP, j'ai pu financer ma formation en développement web. Aujourd'hui, j'ai trouvé un emploi stable et je peux subvenir aux besoins de ma famille. Un grand merci à toute l'équipe !",
+                    domain: "Formation professionnelle",
+                    location: "Lyon"
+                },
+                {
+                    text: "L'aide au logement de l'INAP nous a sauvés de l'expulsion. Le processus était simple et l'équipe très compréhensive. Nous avons pu garder notre appartement et nos enfants n'ont pas eu à changer d'école.",
+                    domain: "Aide au logement", 
+                    location: "Marseille"
+                },
+                {
+                    text: "En tant qu'agriculteur, les subventions INAP m'ont permis de moderniser mon exploitation. Mes revenus ont augmenté de 40% et je peux maintenant envisager l'avenir sereinement.",
+                    domain: "Soutien agricole",
+                    location: "Toulouse"
+                },
+                {
+                    text: "Après mon accident, l'INAP a pris en charge une partie de mes frais médicaux. Sans cette aide, je n'aurais pas pu me soigner correctement. Merci pour votre solidarité !",
+                    domain: "Santé et dépendance",
+                    location: "Nantes"
+                },
+                {
+                    text: "J'ai créé ma petite entreprise de cosmétiques bio grâce au soutien financier de l'INAP. Six mois après, mon chiffre d'affaires dépasse mes espérances. Un rêve devenu réalité !",
+                    domain: "Entrepreneuriat",
+                    location: "Bordeaux"
+                },
+                {
+                    text: "Mère célibataire avec trois enfants, l'urgence sociale INAP m'a aidée quand j'étais au plus bas. J'ai pu payer mes factures et repartir du bon pied. Une aide précieuse !",
+                    domain: "Urgence sociale",
+                    location: "Lille"
+                },
+                {
+                    text: "L'INAP a financé l'installation de panneaux solaires sur notre maison. Nos factures d'électricité ont
