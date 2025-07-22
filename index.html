@@ -32,9 +32,9 @@
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
         .step-form { display: none; }
         .step-form.active { display: block; }
-        .testimonial-slide { display: none; min-height: 250px; opacity: 0; transition: opacity 0.5s ease-in-out; position: absolute; width: 100%; }
-        .testimonial-slide.active { display: block; opacity: 1; position: relative; }
-        .testimonial-slides { position: relative; min-height: 270px; }
+        .testimonial-slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .testimonial-slide.active { display: block; opacity: 1; }
+        .testimonial-slides { position: relative; min-height: 270px; overflow: hidden; }
 
         .accordion-content {
             max-height: 0;
@@ -42,7 +42,7 @@
             transition: max-height 0.4s ease-out;
         }
         .faq-item.active .accordion-content {
-             /* max-height est défini par JS */
+            max-height: 500px;
         }
         .faq-item.active .accordion-icon {
             transform: rotate(180deg);
@@ -64,9 +64,9 @@
 </head>
 <body class="bg-gray-50 text-secondary">
 
-    <!-- WhatsApp Floating Button - MODIFIÉ -->
+    <!-- WhatsApp Floating Button - CORRIGÉ -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/68785650656" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center w-16 h-16 transform hover:scale-110" aria-label="Contacter via WhatsApp">
+        <a href="https://wa.me/687856506" target="_blank" rel="noopener noreferrer" class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center w-16 h-16 transform hover:scale-110" aria-label="Contacter via WhatsApp">
             <i class="fab fa-whatsapp text-2xl"></i>
         </a>
     </div>
@@ -128,27 +128,25 @@
         <div class="container mx-auto px-4">
              <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
                 <div class="p-4">
-                    <div class="text-4xl lg:text-5xl font-bold mb-2">93 000+</div>
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">95 500+</div>
                     <p class="text-light opacity-80 text-sm uppercase tracking-wider">Demandes reçues</p>
                 </div>
                 <div class="p-4">
-                    <div class="text-4xl lg:text-5xl font-bold mb-2">92 850+</div>
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">94 200+</div>
                     <p class="text-light opacity-80 text-sm uppercase tracking-wider">Bénéficiaires aidés</p>
                 </div>
                 <div class="p-4">
-                    <div class="text-4xl lg:text-5xl font-bold mb-2">4.89+ M€</div>
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">6.2+ M€</div>
                     <p class="text-light opacity-80 text-sm uppercase tracking-wider">Distribués</p>
                 </div>
             </div>
              <div class="mt-8 bg-primary bg-opacity-20 rounded-lg overflow-hidden">
                 <div class="news-ticker py-3">
                     <div class="news-ticker-content flex items-center text-sm md:text-base">
-                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-bullhorn mr-2 text-yellow-300"></i>Nouveau : Aide exceptionnelle pour les agriculteurs touchés par les intempéries</span>
-                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-star mr-2 text-yellow-300"></i>92% des bénéficiaires satisfaits de notre accompagnement</span>
-                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-calendar-alt mr-2 text-yellow-300"></i>Prochain atelier d'information le 15/05/2025 dans votre région</span>
-                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-book-open mr-2 text-yellow-300"></i>Découvrez notre nouveau guide des aides 2025 en ligne</span>
-                         <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-bullhorn mr-2 text-yellow-300"></i>Nouveau : Aide exceptionnelle pour les agriculteurs touchés par les intempéries</span>
-                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-star mr-2 text-yellow-300"></i>92% des bénéficiaires satisfaits de notre accompagnement</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-bullhorn mr-2 text-yellow-300"></i>Nouveau : Plateforme INAP 2.0 avec suivi en temps réel lancée en juillet 2025</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-star mr-2 text-yellow-300"></i>95% des formés trouvent un emploi avec nos nouveaux programmes 2025</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-calendar-alt mr-2 text-yellow-300"></i>25 millions d'euros débloqués pour la transition énergétique des ménages</span>
+                        <span class="mx-6 md:mx-8 font-medium flex items-center"><i class="fas fa-book-open mr-2 text-yellow-300"></i>Découvrez notre guide des aides 2025 entièrement actualisé</span>
                     </div>
                 </div>
             </div>
@@ -187,7 +185,7 @@
                     <h3 class="text-2xl font-semibold mb-4 text-primary">Notre mission</h3> 
                     <p class="text-secondary mb-6 leading-relaxed">L'INAP a été créée pour répondre aux besoins essentiels des populations vulnérables à travers un dispositif d'aide unique et simplifié. Notre objectif est de briser les barrières administratives pour apporter un soutien concret là où il est le plus nécessaire, en favorisant l'autonomie et l'inclusion.</p> 
                     <h3 class="text-2xl font-semibold mb-4 text-primary">Notre histoire</h3> 
-                    <p class="text-secondary leading-relaxed">Fondée en 2020 en réponse à la crise économique, l'INAP a rapidement évolué pour devenir le principal programme d'aide sociale du gouvernement. Depuis, nous avons accompagné plus de 92 850 bénéficiaires à travers le pays, adaptant constamment nos dispositifs aux réalités du terrain.</p> 
+                    <p class="text-secondary leading-relaxed">Fondée en 2020 en réponse à la crise économique, l'INAP a rapidement évolué pour devenir le principal programme d'aide sociale du gouvernement. Depuis, nous avons accompagné plus de 94 200 bénéficiaires à travers le pays, adaptant constamment nos dispositifs aux réalités du terrain.</p> 
                 </div> 
                 <div class="flex justify-center"> 
                     <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Personnes souriantes recevant de l'aide" class="rounded-lg shadow-xl max-w-full h-auto"> 
@@ -435,7 +433,7 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- Testimonials Section - CARROUSEL CORRIGÉ -->
     <section id="testimonials" class="py-16 bg-light">
          <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-primary">Ce que disent nos bénéficiaires</h2>
@@ -486,32 +484,36 @@
                            <p class="text-secondary italic text-md leading-relaxed">"Après 10 ans sans emploi, l'INAP a financé ma formation en informatique. J'ai trouvé un CDI 3 mois après l'obtention de mon diplôme. Cette aide a changé ma vie et celle de mes enfants."</p>
                         </div>
                     </div>
-                    <script>
-                         const testimonialSlidesContainer = document.querySelector('.testimonial-slides');
-                         if (testimonialSlidesContainer) {
-                            const baseTestimonials = [
-                                { name: "Julien B.", category: "Soutien agricole", gender: "men", num: 11, stars: 4, text: "L'aide pour moderniser mon exploitation est arrivée au bon moment. J'ai pu investir dans du matériel plus performant et moins polluant." },
-                                { name: "Amina K.", category: "Urgence sociale", gender: "women", num: 15, stars: 5, text: "J'étais sur le point d'être expulsée. L'aide d'urgence de l'INAP m'a permis de régler mes impayés et de souffler. Un immense soulagement." },
-                                { name: "David G.", category: "Santé et dépendance", gender: "men", num: 22, stars: 5, text: "La prise en charge d'une partie des frais d'aide à domicile pour ma mère a grandement facilité notre quotidien. C'est une aide indispensable." },
-                                { name: "Fatima Z.", category: "Aide au logement", gender: "women", num: 50, stars: 5, text: "Le processus de demande était clair et rapide. Nous avons pu sécuriser notre logement grâce à cette aide bienvenue." },
-                                { name: "Kevin P.", category: "Formation professionnelle", gender: "men", num: 45, stars: 4, text: "Cette formation m'a redonné confiance et m'a permis de trouver un emploi dans un nouveau secteur. Merci l'INAP!" },
-                                { name: "Chloé T.", category: "Entrepreneuriat", gender: "women", num: 77, stars: 5, text: "Lancer ma petite entreprise semblait impossible financièrement. Le soutien de l'INAP a été déterminant pour démarrer." },
-                                { name: "Mohamed S.", category: "Urgence sociale", gender: "men", num: 60, stars: 5, text: "Une aide rapide et efficace quand j'en avais le plus besoin après avoir perdu mon travail. Cela m'a permis de rebondir." },
-                                { name: "Isabelle D.", category: "Santé et dépendance", gender: "women", num: 82, stars: 4, text: "L'accompagnement pour les frais médicaux de mon fils a été un vrai soulagement pour notre budget familial." }
-                            ];
-                            let generatedHtml = '';
-                            for (let i = 0; i < 150; i++) {
-                                const baseIndex = i % baseTestimonials.length;
-                                const t = baseTestimonials[baseIndex];
-                                const uniqueNum = (t.num + i * 3) % 100;
-                                const starsHtml = Array(5).fill(0).map((_, j) => `<i class="fas fa-star ${j < t.stars ? 'text-yellow-400' : 'text-gray-300'}"></i>`).join('');
-                                generatedHtml += `<div class="testimonial-slide"> <div class="bg-white p-8 rounded-lg shadow-md"> <div class="flex items-center mb-6"> <img src="https://randomuser.me/api/portraits/${t.gender}/${uniqueNum}.jpg" alt="${t.name}" class="w-16 h-16 rounded-full mr-4 border-2 border-primary"> <div> <h4 class="font-semibold text-lg">${t.name} (Ex ${i+4})</h4> <p class="text-sm text-gray-600">Bénéficiaire - ${t.category}</p> <div class="flex mt-1"> ${starsHtml} </div> </div> </div> <p class="text-secondary italic text-md leading-relaxed">"${t.text} (Ceci est une variation pour l'exemple ${i+4})."</p> </div> </div>`;
-                            }
-                             testimonialSlidesContainer.innerHTML += generatedHtml;
-                         } else {
-                             console.error("'.testimonial-slides' container not found for generating testimonials.");
-                         }
-                    </script>
+                    <div class="testimonial-slide">
+                        <div class="bg-white p-8 rounded-lg shadow-md">
+                           <div class="flex items-center mb-6"> 
+                            <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Julien B." class="w-16 h-16 rounded-full mr-4 border-2 border-primary"> 
+                            <div> 
+                                <h4 class="font-semibold text-lg">Julien B.</h4> 
+                                <p class="text-sm text-gray-600">Bénéficiaire - Soutien agricole</p> 
+                                <div class="flex mt-1 text-yellow-400"> 
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 
+                                </div> 
+                            </div> 
+                            </div>
+                           <p class="text-secondary italic text-md leading-relaxed">"L'aide pour moderniser mon exploitation est arrivée au bon moment. J'ai pu investir dans du matériel plus performant et moins polluant, tout en préservant l'emploi de mes trois ouvriers agricoles."</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="bg-white p-8 rounded-lg shadow-md">
+                           <div class="flex items-center mb-6"> 
+                            <img src="https://randomuser.me/api/portraits/women/15.jpg" alt="Amina K." class="w-16 h-16 rounded-full mr-4 border-2 border-primary"> 
+                            <div> 
+                                <h4 class="font-semibold text-lg">Amina K.</h4> 
+                                <p class="text-sm text-gray-600">Bénéficiaire - Urgence sociale</p> 
+                                <div class="flex mt-1 text-yellow-400"> 
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 
+                                </div> 
+                            </div> 
+                            </div>
+                           <p class="text-secondary italic text-md leading-relaxed">"J'étais sur le point d'être expulsée avec mes deux enfants. L'aide d'urgence de l'INAP m'a permis de régler mes impayés et de souffler. Un immense soulagement, je recommande vivement."</p>
+                        </div>
+                    </div>
                 </div>
                 <button class="absolute left-0 top-1/2 transform -translate-y-1/2 -ml-4 md:-ml-10 bg-white p-3 rounded-full shadow-md hover:bg-gray-100 transition duration-300 z-10 prev-testimonial" aria-label="Témoignage précédent">
                     <i class="fas fa-chevron-left text-primary text-lg"></i>
@@ -640,38 +642,76 @@
         </div>
     </section>
 
-    <!-- News Section -->
+    <!-- News Section - ACTUALITÉS MISES À JOUR -->
     <section id="news" class="py-16 bg-light">
         <div class="container mx-auto px-4"> 
             <h2 class="text-3xl font-bold text-center mb-12 text-primary">Actualités de l'INAP</h2> 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+                <!-- Actualité récente 1 -->
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
-                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Familles souriantes" class="w-full h-48 object-cover"> 
+                    <img src="https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Innovation technologique" class="w-full h-48 object-cover"> 
                     <div class="p-6 flex flex-col flex-grow"> 
-                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Bilan Trimestriel • 5 avril 2025</div> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Innovation • 20 juillet 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">Lancement de la plateforme numérique INAP 2.0</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Une nouvelle interface plus intuitive permet désormais de suivre en temps réel l'avancement des demandes d'aide grâce à l'intelligence artificielle.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <!-- Actualité récente 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Énergies renouvelables" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Environnement • 18 juillet 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">25 millions d'euros pour la transition énergétique des ménages</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Un nouveau fonds exceptionnel aide les familles à installer des panneaux solaires et pompes à chaleur avec jusqu'à 80% de prise en charge.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <!-- Actualité récente 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Formation professionnelle" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Formation • 15 juillet 2025</div> 
+                        <h3 class="text-xl font-semibold mb-3 text-secondary">Record historique : 95% des formés trouvent un emploi</h3> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Les nouvelles formations en cybersécurité et développement durable affichent des taux d'insertion professionnelle exceptionnels.</p> 
+                        <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm">Lire la suite →</a> 
+                    </div> 
+                </div>
+
+                <!-- Actualité antérieure 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
+                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Familles aidées" class="w-full h-48 object-cover"> 
+                    <div class="p-6 flex flex-col flex-grow"> 
+                        <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Bilan • 5 avril 2025</div> 
                         <h3 class="text-xl font-semibold mb-3 text-secondary">Plus de 70.000 familles soutenues ce trimestre</h3> 
                         <p class="text-secondary text-sm mb-4 flex-grow">Le dernier bilan montre une augmentation de 12% des aides attribuées aux familles, avec une attention particulière aux ménages monoparentaux.</p> 
                         <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm">Lire la suite →</a> 
                     </div> 
-                </div> 
+                </div>
+
+                <!-- Actualité antérieure 2 -->
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Champ agricole" class="w-full h-48 object-cover"> 
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Agriculture moderne" class="w-full h-48 object-cover"> 
                     <div class="p-6 flex flex-col flex-grow"> 
                         <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Agriculture • 28 mars 2025</div> 
                         <h3 class="text-xl font-semibold mb-3 text-secondary">Aide exceptionnelle débloquée pour les jeunes agriculteurs</h3> 
                         <p class="text-secondary text-sm mb-4 flex-grow">Face aux défis climatiques, un fonds de 15 millions d'euros est mis en place pour accompagner la transition écologique des exploitations.</p> 
                         <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm">Lire la suite →</a> 
                     </div> 
-                </div> 
+                </div>
+
+                <!-- Actualité antérieure 3 -->
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 flex flex-col"> 
-                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Personne suivant une formation" class="w-full h-48 object-cover"> 
+                    <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Formation en ligne" class="w-full h-48 object-cover"> 
                     <div class="p-6 flex flex-col flex-grow"> 
                         <div class="text-xs text-gray-500 mb-2 uppercase tracking-wider">Emploi • 15 mars 2025</div> 
                         <h3 class="text-xl font-semibold mb-3 text-secondary">85% des bénéficiaires de formations trouvent un emploi</h3> 
-                        <p class="text-secondary text-sm mb-4 flex-grow">Le dernier rapport d'impact révèle l'efficacité des parcours de formation financés par l'INAP, notamment dans le secteur numérique.</p> 
+                        <p class="text-secondary text-sm mb-4 flex-grow">Le rapport d'impact révèle l'efficacité des parcours de formation financés par l'INAP, notamment dans le secteur numérique.</p> 
                         <a href="#" class="text-primary font-medium hover:underline mt-auto self-start text-sm">Lire la suite →</a> 
                     </div> 
-                </div> 
+                </div>
             </div> 
             <div class="text-center mt-12"> 
                 <a href="#" class="px-6 py-3 bg-primary text-white rounded-md hover:bg-accent transition duration-300 inline-block font-medium">Toutes les actualités</a> 
@@ -679,7 +719,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - MODIFIÉ -->
+    <!-- Contact Section - INFORMATIONS MISES À JOUR -->
     <section id="contact" class="py-16 bg-white border-t border-gray-100">
          <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-primary">Contactez l'équipe INAP</h2>
@@ -693,7 +733,7 @@
                             </div> 
                             <div> 
                                 <h4 class="font-medium text-lg">WhatsApp</h4> 
-                                <a href="https://wa.me/68785650656" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline text-lg block">+687 85.65.06</a> 
+                                <a href="https://wa.me/687856506" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline text-lg block">+687 85.65.06</a> 
                                 <p class="text-sm text-gray-500 mt-1">Idéal pour une réponse rapide (garantie sous 24h ouvrées).</p> 
                             </div> 
                           </div>
@@ -843,6 +883,7 @@
         </footer> 
      </div>
 
+    <!-- JavaScript CORRIGÉ -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -881,159 +922,92 @@
             });
         }
 
-        // Testimonial Slider
-        const slidesContainer = document.querySelector('.testimonial-slides');
+        // Testimonial Carousel - CORRIGÉ
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
         const nextBtn = document.querySelector('.next-testimonial');
         const prevBtn = document.querySelector('.prev-testimonial');
-        let slides = [];
-        let currentTestimonialIndex = 0;
+        let currentSlide = 0;
         let testimonialInterval;
 
-        function initializeTestimonials() {
-            slides = slidesContainer ? Array.from(slidesContainer.querySelectorAll('.testimonial-slide')) : [];
-            console.log(`Testimonial slides found: ${slides.length}`);
-
-            if (slides.length > 0) {
-                showTestimonial(0);
-                 if (nextBtn && prevBtn) {
-                    nextBtn.addEventListener('click', handleNextTestimonial);
-                    prevBtn.addEventListener('click', handlePrevTestimonial);
-                    startTestimonialAutoRotate();
-                     const testimonialContainer = document.querySelector('.testimonial-container');
-                     if(testimonialContainer) {
-                        testimonialContainer.addEventListener('mouseenter', stopTestimonialAutoRotate);
-                        testimonialContainer.addEventListener('mouseleave', startTestimonialAutoRotate);
-                    }
-                 } else {
-                     console.error("Testimonial navigation buttons not found.");
-                 }
-            } else {
-                 console.error("No testimonial slides found to initialize.");
-            }
-        }
-
         function showTestimonial(index) {
-            if (slides.length === 0) return;
-            const newIndex = (index + slides.length) % slides.length;
-
-            slides.forEach((slide, i) => {
-                const isActive = i === newIndex;
-                slide.classList.toggle('active', isActive);
-                if (isActive) {
-                    slide.style.position = 'relative';
-                    slide.style.opacity = '1';
-                    slide.style.zIndex = '1';
-                } else {
-                    slide.style.position = 'absolute';
-                    slide.style.opacity = '0';
-                    slide.style.zIndex = '0';
-                }
-            });
-            currentTestimonialIndex = newIndex;
+            testimonialSlides.forEach(slide => slide.classList.remove('active'));
+            if (testimonialSlides[index]) {
+                testimonialSlides[index].classList.add('active');
+            }
+            currentSlide = index;
         }
 
-        const handleNextTestimonial = () => {
-            stopTestimonialAutoRotate();
-            showTestimonial(currentTestimonialIndex + 1);
-        };
+        function nextTestimonial() {
+            const nextIndex = (currentSlide + 1) % testimonialSlides.length;
+            showTestimonial(nextIndex);
+        }
 
-        const handlePrevTestimonial = () => {
-            stopTestimonialAutoRotate();
-            showTestimonial(currentTestimonialIndex - 1);
-        };
+        function prevTestimonial() {
+            const prevIndex = (currentSlide - 1 + testimonialSlides.length) % testimonialSlides.length;
+            showTestimonial(prevIndex);
+        }
 
-        const startTestimonialAutoRotate = () => {
-            stopTestimonialAutoRotate();
-            if (slides.length > 1) {
-                testimonialInterval = setInterval(() => {
-                     showTestimonial(currentTestimonialIndex + 1);
-                }, 7000);
+        function startAutoSlide() {
+            if (testimonialSlides.length > 1) {
+                testimonialInterval = setInterval(nextTestimonial, 5000);
             }
-        };
+        }
 
-        const stopTestimonialAutoRotate = () => {
+        function stopAutoSlide() {
             clearInterval(testimonialInterval);
-        };
+        }
 
-        setTimeout(initializeTestimonials, 100);
+        // Initialisation des témoignages
+        if (testimonialSlides.length > 0) {
+            showTestimonial(0);
+            startAutoSlide();
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    stopAutoSlide();
+                    nextTestimonial();
+                    setTimeout(startAutoSlide, 8000);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    stopAutoSlide();
+                    prevTestimonial();
+                    setTimeout(startAutoSlide, 8000);
+                });
+            }
+
+            // Pause au survol
+            const testimonialContainer = document.querySelector('.testimonial-container');
+            if (testimonialContainer) {
+                testimonialContainer.addEventListener('mouseenter', stopAutoSlide);
+                testimonialContainer.addEventListener('mouseleave', startAutoSlide);
+            }
+        }
 
         // FAQ Accordion
         const faqList = document.getElementById('faq-list');
-
         if (faqList) {
             faqList.addEventListener('click', (event) => {
                 const toggleButton = event.target.closest('.accordion-toggle');
                 if (!toggleButton) return;
 
                 const faqItem = toggleButton.closest('.faq-item');
-                 if (!faqItem) return;
+                if (!faqItem) return;
 
                 const content = faqItem.querySelector('.accordion-content');
                 if (!content) return;
 
                 faqItem.classList.toggle('active');
-
                 if (faqItem.classList.contains('active')) {
                     content.style.maxHeight = content.scrollHeight + "px";
                 } else {
                     content.style.maxHeight = null;
                 }
             });
-        } else {
-            console.error("FAQ list container ('#faq-list') not found.");
         }
 
-         // FAQ Search
-         const faqSearchInput = document.getElementById('faq-search');
-         const faqItems = faqList ? Array.from(faqList.querySelectorAll('.faq-item')) : [];
-         const faqNoResults = document.getElementById('faq-no-results');
-         if (faqSearchInput && faqList && faqItems.length > 0 && faqNoResults) {
-             faqSearchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase().trim();
-                let hasVisibleItems = false;
-                
-                faqItems.forEach(item => {
-                    const question = item.querySelector('.faq-question');
-                    if (question) {
-                        const questionText = question.textContent.toLowerCase();
-                        const matches = questionText.includes(query);
-                        item.style.display = matches || query === '' ? 'block' : 'none';
-                        if (matches || query === '') hasVisibleItems = true;
-                    }
-                });
-                
-                faqNoResults.classList.toggle('hidden', hasVisibleItems || query === '');
-             });
-         }
-
-        // Contact Form Submission avec Formspree
-        const contactForm = document.getElementById('contact-form');
-        const contactFormStatus = document.getElementById('contact-form-status');
-        const contactSubmitButton = document.getElementById('contact-submit-button');
-
-        if (contactForm && contactFormStatus && contactSubmitButton) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                contactFormStatus.textContent = 'Envoi en cours...';
-                contactFormStatus.className = 'text-sm text-center mt-4 text-blue-600';
-                contactSubmitButton.disabled = true;
-
-                const formData = new FormData(contactForm);
-                const formAction = contactForm.action;
-
-                try {
-                    const response = await fetch(formAction, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (response.ok) {
-                         contactFormStatus.textContent = 'Message envoyé avec succès !';
-                         contactFormStatus.className = 'text-sm text-center mt-4 text-green-600';
-                         contactForm.reset();
-                         setTimeout(() => { contactFormStatus.textContent = ''; }, 5000);
-                    } else {
-                         const data = await response.json();
+        // FAQ Search
+        const faqSearchInput = document.getElementById('faq-search');
+        const faqItems
